@@ -1,13 +1,13 @@
 # rogerdigital.github.io
 
-Personal website of Roger.
+Personal website of Roger Deng.
 
-This site is built as a lightweight GitHub Pages homepage to present:
+This repository contains a lightweight GitHub Pages site used to present:
 
 - selected projects
-- open source contributions
 - technical interests
-- contact information
+- public-facing profile information
+- contact details
 
 ## Focus
 
