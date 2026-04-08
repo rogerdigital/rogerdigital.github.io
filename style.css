@@ -200,7 +200,7 @@ h1 {
 
 @media (max-width: 800px) {
   .list-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .nav {
@@ -220,5 +220,11 @@ h1 {
 
   .subtitle {
     font-size: 18px;
+  }
+}
+
+@media (max-width: 520px) {
+  .list-grid {
+    grid-template-columns: 1fr;
   }
 }
