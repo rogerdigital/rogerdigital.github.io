@@ -145,12 +145,29 @@
       -->
 
       <div class="card feature-card">
+        <h3>OpenClaw — fix: prevent isolated heartbeat session key :heartbeat suffix accumulation</h3>
+        <p class="meta">Merged pull request</p>
+        <p>
+          Fixed a feedback loop where <code>isolatedSession: true</code> heartbeat ticks endlessly
+          appended <code>:heartbeat</code> to session keys (e.g. <code>agent:main:heartbeat:heartbeat:…</code>),
+          eventually hitting string length limits and leaving orphaned entries in the session store.
+          Applied a regex strip before re-suffixing to canonicalize keys on every tick, added stale-key
+          cleanup, and introduced 9 regression tests covering key convergence and edge cases.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">View PR →</a>
+          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project →</a>
+        </p>
+      </div>
+
+      <div class="card feature-card">
         <h3>OpenClaw — fix(browser): stop forcing an extra blank tab on browser launch</h3>
         <p class="meta">Merged pull request</p>
         <p>
-          Removed the hardcoded <code>about:blank</code> Chrome launch argument, extracted
-          launch-argument construction into a helper, and added a regression test to prevent
-          extra blank-tab startup behavior.
+          Fixed an unintended UX regression where Chrome always opened an extra blank tab on
+          launch due to a hardcoded <code>about:blank</code> argument. Extracted launch-argument
+          construction into a dedicated helper for clarity, and added a regression test to ensure
+          the behavior stays clean.
         </p>
         <p class="links-row">
           <a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">View PR →</a>
