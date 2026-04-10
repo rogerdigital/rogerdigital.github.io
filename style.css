@@ -86,11 +86,9 @@ h1 {
   line-height: 1.02;
   margin: 0 0 18px;
   letter-spacing: -0.04em;
-  max-width: 820px;
 }
 
 .subtitle {
-  max-width: 760px;
   font-size: 20px;
   color: var(--color-text-secondary);
 }
