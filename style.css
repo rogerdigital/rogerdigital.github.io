@@ -70,7 +70,7 @@ code {
 }
 
 .hero {
-  padding: 88px 0 64px;
+  padding: 40px 0 24px;
 }
 
 .eyebrow {
@@ -121,7 +121,7 @@ h1 {
 }
 
 .section {
-  padding: 36px 0;
+  padding: 20px 0;
 }
 
 .section-header {
@@ -152,7 +152,7 @@ h1 {
   border: 1px solid var(--color-border);
   border-radius: 16px;
   padding: 22px;
-  margin: 16px 0;
+  margin: 8px 0;
 }
 
 .feature-card {
@@ -193,7 +193,7 @@ h1 {
 }
 
 .footer {
-  padding: 40px 0 56px;
+  padding: 24px 0 32px;
   color: var(--color-muted);
   font-size: 14px;
 }
@@ -215,7 +215,7 @@ h1 {
   }
 
   .hero {
-    padding-top: 56px;
+    padding-top: 28px;
   }
 
   .subtitle {
