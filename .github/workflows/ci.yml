@@ -1,0 +1,97 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    name: Smoke check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Validate static site contract
+        run: |
+          python3 - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          required_files = [
+              Path("index.html"),
+              Path("style.css"),
+              Path("favicon.svg"),
+          ]
+
+          missing = [str(path) for path in required_files if not path.is_file()]
+          if missing:
+              raise SystemExit(f"Missing required files: {', '.join(missing)}")
+
+          empty = [str(path) for path in required_files if path.stat().st_size == 0]
+          if empty:
+              raise SystemExit(f"Required files are empty: {', '.join(empty)}")
+
+          class SiteParser(HTMLParser):
+              def __init__(self):
+                  super().__init__()
+                  self.stylesheets = []
+                  self.scripts = []
+                  self.external_link_errors = []
+                  self.meta_description = False
+                  self.title = ""
+                  self._in_title = False
+
+              def handle_starttag(self, tag, attrs):
+                  attr = dict(attrs)
+                  if tag == "title":
+                      self._in_title = True
+                  if tag == "meta" and attr.get("name") == "description":
+                      self.meta_description = bool(attr.get("content", "").strip())
+                  if tag == "link" and attr.get("rel") == "stylesheet":
+                      self.stylesheets.append(attr.get("href", ""))
+                  if tag == "script":
+                      self.scripts.append(attr.get("src", "inline script"))
+                  if tag == "a":
+                      href = attr.get("href", "")
+                      is_external = href.startswith(("http://", "https://"))
+                      if is_external:
+                          target = attr.get("target")
+                          rel = set(attr.get("rel", "").split())
+                          if target != "_blank" or "noreferrer" not in rel:
+                              self.external_link_errors.append(href)
+
+              def handle_endtag(self, tag):
+                  if tag == "title":
+                      self._in_title = False
+
+              def handle_data(self, data):
+                  if self._in_title:
+                      self.title += data
+
+          parser = SiteParser()
+          parser.feed(Path("index.html").read_text(encoding="utf-8"))
+
+          errors = []
+          if "style.css" not in parser.stylesheets:
+              errors.append("index.html must link style.css as a stylesheet")
+          if parser.scripts:
+              errors.append("JavaScript is not part of this static site contract")
+          if not parser.title.strip():
+              errors.append("index.html must include a non-empty title")
+          if not parser.meta_description:
+              errors.append("index.html must include a non-empty meta description")
+          if parser.external_link_errors:
+              errors.append(
+                  "External links must use target=\"_blank\" rel=\"noreferrer\": "
+                  + ", ".join(parser.external_link_errors)
+              )
+
+          if errors:
+              raise SystemExit("\n".join(errors))
+          PY
