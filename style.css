@@ -9,6 +9,8 @@
   --color-bg: #fafafa;
   --color-surface: white;
   --color-code-bg: #f2f2f2;
+  --color-accent: #1f4b3f;
+  --color-accent-soft: #eef5f1;
 }
 
 * {
@@ -93,6 +95,24 @@ h1 {
   color: var(--color-text-secondary);
 }
 
+.hero-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.hero-points span {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: 13px;
+  letter-spacing: 0.01em;
+}
+
 .actions {
   display: flex;
   gap: 12px;
@@ -145,6 +165,18 @@ h1 {
   margin-top: 20px;
 }
 
+.capability-grid .card,
+.project-card {
+  height: 100%;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 20px;
+}
+
 .card {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -155,6 +187,20 @@ h1 {
 
 .feature-card {
   border-color: var(--color-border-strong);
+}
+
+.project-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-label {
+  margin: 0 0 10px;
+  color: var(--color-accent);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .card h3 {
@@ -169,6 +215,13 @@ h1 {
   color: var(--color-muted);
   margin-top: -2px;
   margin-bottom: 10px;
+}
+
+.project-emphasis {
+  margin-top: auto;
+  padding-top: 8px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
 }
 
 .links-row {
@@ -201,6 +254,10 @@ h1 {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .project-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
   .nav {
     flex-direction: column;
     align-items: flex-start;
@@ -222,7 +279,8 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  .list-grid {
+  .list-grid,
+  .project-grid {
     grid-template-columns: 1fr;
   }
 }
