@@ -6,14 +6,14 @@ This repository contains a lightweight GitHub Pages site used to present:
 
 - selected projects
 - open source contributions
-- technical interests
+- AI, robotics, and digital biology interests
+- autonomous systems and AI product engineering work
 - public-facing profile information
-- contact details
 
 ## Focus
 
-AI, robotics, digital biology, autonomous systems, and developer-facing tools.
+Autonomous systems, AI product engineering, robotics, and digital biology.
 
 ## Deployment
 
-Hosted with GitHub Pages.
+Hosted with GitHub Pages at https://rogerdigital.github.io.
