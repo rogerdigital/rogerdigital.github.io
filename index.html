@@ -156,56 +156,5 @@
   <footer class="container footer">
     <p>© 2026 Roger Deng. Built with GitHub Pages.</p>
   </footer>
-  <script>
-    const header = document.querySelector(".site-header");
-    const navLinks = Array.from(document.querySelectorAll(".nav-link"));
-    const sections = navLinks
-      .map((link) => document.querySelector(link.getAttribute("href")))
-      .filter(Boolean);
-
-    const setActiveLink = (id) => {
-      navLinks.forEach((link) => {
-        const isActive = link.getAttribute("href") === `#${id}`;
-        link.classList.toggle("is-active", isActive);
-        if (isActive) {
-          link.setAttribute("aria-current", "page");
-        } else {
-          link.removeAttribute("aria-current");
-        }
-      });
-    };
-
-    const getCurrentSection = () => {
-      const offset = window.scrollY + header.offsetHeight + 120;
-      let currentId = sections[0]?.id;
-
-      sections.forEach((section) => {
-        if (section.offsetTop <= offset) {
-          currentId = section.id;
-        }
-      });
-
-      return currentId;
-    };
-
-    const syncActiveLink = () => {
-      const currentId = getCurrentSection();
-      if (currentId) {
-        setActiveLink(currentId);
-      }
-    };
-
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        const targetId = link.getAttribute("href").slice(1);
-        setActiveLink(targetId);
-      });
-    });
-
-    window.addEventListener("scroll", syncActiveLink, { passive: true });
-    window.addEventListener("resize", syncActiveLink);
-    window.addEventListener("load", syncActiveLink);
-    syncActiveLink();
-  </script>
 </body>
 </html>
