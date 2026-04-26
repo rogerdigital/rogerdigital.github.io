@@ -107,6 +107,17 @@
           <p class="card-label">Selected Contributions</p>
 
           <div class="nested-card">
+            <h4>WhatsApp DM voice-note transcription</h4>
+            <p>
+              Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive
+              spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.
+            </p>
+            <p class="links-row">
+              <a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">View PR →</a>
+            </p>
+          </div>
+
+          <div class="nested-card">
             <h4>Heartbeat session key canonicalization</h4>
             <p>
               Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions,
