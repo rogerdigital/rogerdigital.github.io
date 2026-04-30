@@ -188,5 +188,11 @@
   <footer class="container footer">
     <p>© 2026 Roger Deng. Built with GitHub Pages.</p>
   </footer>
+  <script>
+  const links=document.querySelectorAll('.nav-link'),sections=[];
+  links.forEach(l=>{const s=document.querySelector(l.getAttribute('href'));s&&sections.push({el:s,link:l})});
+  const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));e.target._link.classList.add('active')}})},{rootMargin:'-72px 0px -60% 0px',threshold:0});
+  sections.forEach(s=>{s.el._link=s.link;obs.observe(s.el)});
+  </script>
 </body>
 </html>

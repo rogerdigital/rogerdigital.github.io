@@ -96,7 +96,8 @@ body:has(#hero:target) .nav-link[href="#hero"],
 body:has(#build:target) .nav-link[href="#build"],
 body:has(#projects:target) .nav-link[href="#projects"],
 body:has(#oss:target) .nav-link[href="#oss"],
-body:has(#contact:target) .nav-link[href="#contact"] {
+body:has(#contact:target) .nav-link[href="#contact"],
+.nav-link.active {
   color: var(--color-text);
   background: var(--color-accent-soft);
 }
