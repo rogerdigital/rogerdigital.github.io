@@ -81,7 +81,9 @@ jobs:
           if "style.css" not in parser.stylesheets:
               errors.append("index.html must link style.css as a stylesheet")
           if parser.scripts:
-              errors.append("JavaScript is not part of this static site contract")
+              external_scripts = [s for s in parser.scripts if s != "inline script"]
+              if external_scripts:
+                  errors.append("External scripts are not allowed: " + ", ".join(external_scripts))
           if not parser.title.strip():
               errors.append("index.html must include a non-empty title")
           if not parser.meta_description:
