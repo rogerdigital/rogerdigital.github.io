@@ -1,0 +1,25 @@
+{
+  "name": "rogerdigital.github.io",
+  "version": "1.0.0",
+  "description": "Personal website of Roger Deng.",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rogerdigital/rogerdigital.github.io.git"
+  },
+  "author": "Roger Deng",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rogerdigital/rogerdigital.github.io/issues"
+  },
+  "homepage": "https://rogerdigital.github.io",
+  "dependencies": {
+    "@astrojs/mdx": "^5.0.4",
+    "astro": "^6.2.1"
+  }
+}

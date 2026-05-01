@@ -1,0 +1,89 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="开源贡献摘要 2026-04-29 | Roger Deng"
+  description="Roger Deng 开源贡献摘要，2026-04-29。"
+>
+  <section class="hero">
+    <p class="eyebrow">Open Source · 2026-04-29</p>
+    <h1>开源贡献摘要</h1>
+    <p class="subtitle">昨天提交的 PR 状态汇总及处理结果。</p>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>已合入</h2>
+    </div>
+
+    <div class="card feature-card">
+      <h3>openclaw/openclaw <span class="meta">#74224</span></h3>
+      <p class="meta">fix(tui): resync streaming watchdog after reconnect</p>
+      <p>TUI streaming watchdog 断线后状态失同步。修复：断开时暂停 watchdog，重连时恢复并保留 <code>activeChatRunId</code>，将 active-run tool 事件和非终态 lifecycle 事件计为存活信号，超时重载历史而非弹出噪音警告。</p>
+      <p class="links-row">
+        <a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">View PR &rarr;</a>
+      </p>
+    </div>
+
+    <div class="card feature-card">
+      <h3>thedotmack/claude-mem <span class="meta">#2205（co-author）</span></h3>
+      <p class="meta">fix: preserve relevance order in semantic search (closes #2153)</p>
+      <p><code>orderBy='relevance'</code> 被静默降级为 <code>'date_desc'</code>，导致 ChromaDB 向量相似度排名丢失。本人在 fork 中定位并修复了 SessionStore 侧问题，上游维护者 cherry-pick 后补全了 strategy 侧修复，commit 层保留 co-author 署名。</p>
+      <p class="links-row">
+        <a href="https://github.com/thedotmack/claude-mem/pull/2205" target="_blank" rel="noreferrer">View upstream PR &rarr;</a>
+        <a href="https://github.com/rogerdigital/claude-mem/pull/1" target="_blank" rel="noreferrer">Original fix &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>待合入</h2>
+    </div>
+
+    <div class="card feature-card">
+      <h3>anomalyco/opencode <span class="meta">#24933</span></h3>
+      <p class="meta">fix(cli): detect MIME type for --file flag instead of hardcoding text/plain</p>
+      <p><code>opencode run --file</code> 对所有文件硬编码 <code>text/plain</code>，导致图片等多模态输入无法被 LLM 识别。改为调用已有的 <code>Filesystem.mimeType()</code> 工具，按文件扩展名正确推断 MIME 类型。CI 通过，等待 maintainer review。</p>
+      <p class="links-row">
+        <a href="https://github.com/anomalyco/opencode/pull/24933" target="_blank" rel="noreferrer">View PR &rarr;</a>
+      </p>
+    </div>
+
+    <div class="card feature-card">
+      <h3>Einsia/OpenChronicle <span class="meta">#25</span></h3>
+      <p class="meta">fix(writer): avoid compact overwriting concurrent writes</p>
+      <p><code>compact_file</code> LLM rewrite 期间 reducer/classifier 可能追加新条目，原实现会用过期的压缩结果覆盖。修复：写回前在 file lock 内重读文件，若内容已变则跳过本次压缩留待重试。FTS 索引刷新包裹在 SQLite savepoint 内保证原子性。</p>
+      <p class="links-row">
+        <a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">View PR &rarr;</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>其他结果</h2>
+    </div>
+
+    <div class="project-grid">
+      <div class="card project-card">
+        <h3>EvoMap/evolver <span class="meta">#520</span></h3>
+        <p>Add ESLint and Prettier configuration</p>
+        <p class="project-emphasis">镜像仓库，PR 无法直接合入。维护者将内容移植至内部 repo，预计 v1.77 发布时在 release notes 署名。</p>
+        <p class="links-row">
+          <a href="https://github.com/EvoMap/evolver/pull/520" target="_blank" rel="noreferrer">View PR &rarr;</a>
+        </p>
+      </div>
+
+      <div class="card project-card">
+        <h3>openclaw/openclaw <span class="meta">#74211</span></h3>
+        <p>fix(group-chat): add emoji mention opt-out</p>
+        <p class="project-emphasis">本人主动关闭。</p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/74211" target="_blank" rel="noreferrer">View PR &rarr;</a>
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

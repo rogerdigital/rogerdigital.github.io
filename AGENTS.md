@@ -14,26 +14,34 @@
 
 | Layer | Tech |
 |-------|------|
-| Language | HTML5 + CSS3 |
-| Framework | 无（零依赖、零构建） |
-| JavaScript | 无 |
-| Build Tools | 无 |
-| Package Manager | 无 |
-| Hosting | GitHub Pages |
+| Framework | Astro |
+| Language | TypeScript |
+| Content | Markdown / MDX |
+| Styling | CSS (scoped + global) |
+| Client JS | 按需使用（如 scroll spy） |
+| Build | Astro CLI |
+| Hosting | GitHub Pages (GitHub Actions 部署) |
 
 ## Architecture
 
 ```
 rogerdigital.github.io/
-├── index.html      # 单页面，包含所有内容（导航、Hero、Focus、Projects、OSS、Contact、Footer）
-├── style.css       # 全部样式（响应式，800px 断点）
-├── .gitignore      # Git 忽略规则
-├── README.md       # 项目说明
-├── CLAUDE.md       # 专用协作指令
-└── AGENTS.md       # 通用协作指令
+├── src/
+│   ├── pages/              # 页面路由
+│   │   ├── index.astro     # 首页（Hero + Focus）
+│   │   ├── projects.astro  # 项目 + 开源贡献
+│   │   └── blog/           # 博客
+│   ├── layouts/            # 页面布局
+│   ├── components/         # 可复用组件
+│   ├── content/blog/       # 博客文章（MDX）
+│   └── styles/             # 全局样式
+├── public/                 # 静态资源
+├── astro.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-极简结构：整站只有 `index.html` + `style.css` 两个核心文件，无需构建步骤。
+Astro 静态站点，构建产物为纯 HTML/CSS/JS，部署到 GitHub Pages。
 
 ## Page Sections
 
@@ -73,8 +81,7 @@ rogerdigital.github.io/
 
 ## Important Guardrails
 
-- 保持零依赖、零构建的简洁架构，不引入不必要的框架或工具链
-- 不使用 JavaScript，保持纯 HTML + CSS
+- 客户端 JS 按需使用，不引入不必要的外部脚本或依赖
 - 所有外部链接使用 `target="_blank" rel="noreferrer"`
 - 保持响应式设计，确保移动端体验
-- `index.html` 的 `<title>` 和 meta description 与页面内容保持一致
+- 每个页面的 `<title>` 和 meta description 与内容保持一致

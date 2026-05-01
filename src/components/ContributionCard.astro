@@ -1,0 +1,19 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  codeSnippet?: string;
+}
+
+const { title, description, link, codeSnippet } = Astro.props;
+---
+
+<div class="nested-card">
+  <h4>{title}</h4>
+  <p set:html={description} />
+  {codeSnippet && <p><code set:html={codeSnippet} /></p>}
+  <p class="links-row">
+    <a href={link} target="_blank" rel="noreferrer">View PR &rarr;</a>
+  </p>
+</div>
