@@ -1,0 +1,30 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
+---
+
+<header class="site-header">
+  <nav class="container nav">
+    <a href="/" class="logo">Roger Deng</a>
+    <div class="nav-links">
+      {navItems.map((item) => (
+        <a
+          class:list={["nav-link", { active: currentPath === item.href }]}
+          href={item.href}
+          {...(currentPath === item.href ? { "aria-current": "page" } : {})}
+        >
+          {item.label}
+        </a>
+      ))}
+    </div>
+  </nav>
+</header>

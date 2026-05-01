@@ -1,0 +1,18 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  linkLabel?: string;
+}
+
+const { title, description, link, linkLabel = "Repository" } = Astro.props;
+---
+
+<div class="card project-card">
+  <h3>{title}</h3>
+  <p>{description}</p>
+  <p class="links-row">
+    <a href={link} target="_blank" rel="noreferrer">{linkLabel} &rarr;</a>
+  </p>
+</div>

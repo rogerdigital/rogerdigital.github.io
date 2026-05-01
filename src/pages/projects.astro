@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import ContributionCard from "../components/ContributionCard.astro";
+---
+
+<BaseLayout
+  title="Projects | Roger Deng"
+  description="Selected work across autonomous decision systems, publishing workflows, and open-source contributions."
+>
+  <section class="section">
+    <div class="section-header">
+      <h2>Projects</h2>
+      <p class="section-note">Selected work across autonomous decision systems and publishing workflows.</p>
+    </div>
+    <div class="project-grid">
+      <ProjectCard
+        title="QuantPilot"
+        description="Autonomous quantitative trading platform focused on agent-driven decision workflows."
+        link="https://github.com/rogerdigital/quantpilot"
+      />
+      <ProjectCard
+        title="Publio"
+        description="Multi-platform publishing tool for writing once and distributing everywhere."
+        link="https://github.com/rogerdigital/publio"
+      />
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-header">
+      <h2>Open Source</h2>
+      <p class="section-note">Open-source AI assistant project I contribute to, plus concrete merged work.</p>
+    </div>
+    <div class="card">
+      <p class="card-label">Contribution Log</p>
+      <h3 style="margin-bottom:8px;">开源贡献摘要 · 2026-04-29</h3>
+      <p>4 个项目，6 条 PR：1 merged，1 co-authored，2 in review，2 closed。</p>
+      <p class="links-row">
+        <a href="/contributions/oss-2026-04-29">查看详情 &rarr;</a>
+      </p>
+    </div>
+
+    <div class="card feature-card">
+      <h3>OpenClaw</h3>
+      <p>Open-source AI assistant project I contribute to.</p>
+      <p class="links-row">
+        <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project &rarr;</a>
+      </p>
+      <div class="nested-section">
+        <p class="card-label">Selected Contributions</p>
+
+        <ContributionCard
+          title="TUI streaming watchdog reconnect recovery"
+          description='Resynced the TUI streaming watchdog after reconnects, kept active tool and lifecycle events as proof-of-life, and added regression coverage for stale reconnect runs.'
+          link="https://github.com/openclaw/openclaw/pull/74224"
+        />
+
+        <ContributionCard
+          title="WhatsApp DM voice-note transcription"
+          description='Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.'
+          link="https://github.com/openclaw/openclaw/pull/64120"
+        />
+
+        <ContributionCard
+          title="Heartbeat session key canonicalization"
+          description='Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions, added stale-key cleanup, and covered the behavior with regression tests.'
+          link="https://github.com/openclaw/openclaw/pull/59606"
+        />
+
+        <ContributionCard
+          title="Browser launch blank-tab fix"
+          description="Removed an unintended extra blank tab on browser launch by fixing launch arguments and locking the behavior with a regression test."
+          link="https://github.com/openclaw/openclaw/pull/52451"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

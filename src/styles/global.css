@@ -91,12 +91,7 @@ code {
   color: var(--color-text);
 }
 
-body:not(:has(:target)) .nav-link[href="#hero"],
-body:has(#hero:target) .nav-link[href="#hero"],
-body:has(#build:target) .nav-link[href="#build"],
-body:has(#projects:target) .nav-link[href="#projects"],
-body:has(#oss:target) .nav-link[href="#oss"],
-body:has(#contact:target) .nav-link[href="#contact"] {
+.nav-link.active {
   color: var(--color-text);
   background: var(--color-accent-soft);
 }
@@ -147,19 +142,6 @@ h1 {
   letter-spacing: 0.01em;
 }
 
-.button {
-  display: inline-block;
-  border: 1px solid var(--color-btn-border);
-  padding: 10px 16px;
-  border-radius: 999px;
-  transition: transform 0.15s ease, opacity 0.15s ease;
-}
-
-.button:hover {
-  transform: translateY(-1px);
-  opacity: 0.92;
-}
-
 .section {
   padding: 20px 0;
 }
@@ -205,14 +187,9 @@ h1 {
   margin-top: 16px;
 }
 
-.capability-grid .card,
-.project-card {
-  height: 100%;
-}
-
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   margin-top: 20px;
 }
@@ -232,6 +209,7 @@ h1 {
 .project-card {
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .card-label {
@@ -310,7 +288,7 @@ h1 {
 }
 
 .links-row a,
-#contact a {
+.contact-section a {
   color: var(--color-text);
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -327,6 +305,16 @@ h1 {
   padding: 24px 0 32px;
   color: var(--color-muted);
   font-size: 14px;
+}
+
+.blog-empty {
+  text-align: center;
+  padding: 64px 0;
+  color: var(--color-muted);
+}
+
+.blog-empty p {
+  font-size: 16px;
 }
 
 @media (max-width: 800px) {
@@ -359,8 +347,7 @@ h1 {
 }
 
 @media (max-width: 520px) {
-  .list-grid,
-  .project-grid {
+  .list-grid {
     grid-template-columns: 1fr;
   }
 }
