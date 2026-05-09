@@ -1,19 +1,10 @@
 ---
-
 ---
 
 <section id="oss" class="section">
   <div class="section-header">
     <h2>Open Source</h2>
-    <p class="section-note">Open-source AI assistant project I contribute to, plus concrete merged work.</p>
-  </div>
-  <div class="card">
-    <p class="card-label">Contribution Log</p>
-    <h3 style="margin-bottom:8px;">开源贡献摘要 · 2026-04-29</h3>
-    <p>4 个项目，6 条 PR：2 merged，1 co-authored，1 in review，2 closed。</p>
-    <p class="links-row">
-      <a href="/oss/2026-04-29">查看详情 →</a>
-    </p>
+    <p class="section-note">Open-source projects I contribute to.</p>
   </div>
 
   <div class="card feature-card">
@@ -69,6 +60,32 @@
         </p>
         <p class="links-row">
           <a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card feature-card">
+    <h3>OpenChronicle</h3>
+    <p>
+      Open-source personal knowledge management with LLM-powered memory compaction.
+    </p>
+    <p class="links-row">
+      <a href="https://github.com/Einsia/OpenChronicle" target="_blank" rel="noreferrer">Project →</a>
+    </p>
+    <div class="nested-section">
+      <p class="card-label">Selected Contributions</p>
+
+      <div class="nested-card">
+        <h4>Compact overwriting concurrent writes fix</h4>
+        <p>
+          <code>compact_file</code> LLM rewrite could overwrite entries appended by concurrent
+          reducers. Added compare-and-swap writeback: re-read the file under per-file lock before
+          writing, skip compaction if changed, and refresh FTS rows atomically inside a SQLite
+          savepoint.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">View PR →</a>
         </p>
       </div>
     </div>
