@@ -1,0 +1,30 @@
+---
+interface Props {
+  backLink?: { label: string; href: string };
+}
+
+const { backLink } = Astro.props;
+---
+
+<header class="site-header">
+  <nav class="container nav">
+    <div class="logo">
+      {backLink
+        ? <a href={backLink.href}>{backLink.label}</a>
+        : <a href="/">Roger Deng</a>
+      }
+    </div>
+    {!backLink && (
+      <div class="nav-links">
+        <a class="nav-link" href="/#hero">Home</a>
+        <a class="nav-link" href="/#about">About</a>
+        <a class="nav-link" href="/#projects">Projects</a>
+        <a class="nav-link" href="/#oss">OSS</a>
+        <a class="nav-link" href="/#writing">Writing</a>
+        <a class="nav-link" href="/now">Now</a>
+        <a class="nav-link" href="/uses">Uses</a>
+        <a class="nav-link" href="/#contact">Contact</a>
+      </div>
+    )}
+  </nav>
+</header>
