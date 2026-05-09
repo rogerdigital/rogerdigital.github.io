@@ -1,30 +1,64 @@
 ---
 interface Props {
-  currentPath: string;
+  backLink?: { label: string; href: string };
 }
 
-const { currentPath } = Astro.props;
-
-const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/blog", label: "Blog" },
-];
+const { backLink } = Astro.props;
+const isHome = Astro.url.pathname === '/';
 ---
 
 <header class="site-header">
   <nav class="container nav">
-    <a href="/" class="logo">Roger Deng</a>
-    <div class="nav-links">
-      {navItems.map((item) => (
-        <a
-          class:list={["nav-link", { active: currentPath === item.href }]}
-          href={item.href}
-          {...(currentPath === item.href ? { "aria-current": "page" } : {})}
-        >
-          {item.label}
-        </a>
-      ))}
+    <div class="logo">
+      {backLink
+        ? <a href={backLink.href}>{backLink.label}</a>
+        : <a href="/">Roger Deng</a>
+      }
     </div>
+    {!backLink && (
+      <div class="nav-links">
+        <a class="nav-link" href="/#hero">Home</a>
+        <a class="nav-link" href="/#about">About</a>
+        <a class="nav-link" href="/#projects">Projects</a>
+        <a class="nav-link" href="/#contact">Contact</a>
+      </div>
+    )}
   </nav>
 </header>
+
+{!backLink && (
+  <script>
+    const links = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
+    const sectionIds = ['hero', 'about', 'projects', 'contact'];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (sections.length > 0) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const id = entry.target.id;
+            links.forEach((link) => {
+              const href = link.getAttribute('href');
+              const isActive = href === `/#${id}`;
+              link.classList.toggle('active', isActive);
+            });
+          });
+        },
+        { rootMargin: '-80px 0px -60% 0px', threshold: 0 }
+      );
+
+      sections.forEach((s) => observer.observe(s));
+    }
+
+    const path = window.location.pathname;
+    links.forEach((link) => {
+      const href = link.getAttribute('href');
+      if (!href) return;
+      if (path === '/projects' && href === '/#projects') link.classList.add('active');
+      if (path.startsWith('/blog') && href === '/#blog') link.classList.add('active');
+    });
+  </script>
+)}
