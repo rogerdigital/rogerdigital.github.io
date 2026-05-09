@@ -38,6 +38,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
           <a href="https://github.com/rogerdigital/claude-mem/pull/1" target="_blank" rel="noreferrer">Original fix →</a>
         </p>
       </div>
+
+      <div class="card feature-card">
+        <h3>Einsia/OpenChronicle <span class="meta">#25</span></h3>
+        <p class="meta">fix(writer): avoid compact overwriting concurrent writes</p>
+        <p><code>compact_file</code> LLM rewrite 期间 reducer/classifier 可能追加新条目，原实现会用过期的压缩结果覆盖。修复：写回前在 file lock 内重读文件，若内容已变则跳过本次压缩留待重试。FTS 索引刷新包裹在 SQLite savepoint 内保证原子性。</p>
+        <p class="links-row">
+          <a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
     </section>
 
     <section class="section">
@@ -51,15 +60,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
         <p><code>opencode run --file</code> 对所有文件硬编码 <code>text/plain</code>，导致图片等多模态输入无法被 LLM 识别。改为调用已有的 <code>Filesystem.mimeType()</code> 工具，按文件扩展名正确推断 MIME 类型。CI 通过，等待 maintainer review。</p>
         <p class="links-row">
           <a href="https://github.com/anomalyco/opencode/pull/24933" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
-
-      <div class="card feature-card">
-        <h3>Einsia/OpenChronicle <span class="meta">#25</span></h3>
-        <p class="meta">fix(writer): avoid compact overwriting concurrent writes</p>
-        <p><code>compact_file</code> LLM rewrite 期间 reducer/classifier 可能追加新条目，原实现会用过期的压缩结果覆盖。修复：写回前在 file lock 内重读文件，若内容已变则跳过本次压缩留待重试。FTS 索引刷新包裹在 SQLite savepoint 内保证原子性。</p>
-        <p class="links-row">
-          <a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">View PR →</a>
         </p>
       </div>
     </section>
