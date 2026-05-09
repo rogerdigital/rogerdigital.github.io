@@ -1,0 +1,40 @@
+---
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog', ({ data }) => !data.draft);
+const posts = allPosts
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
+---
+
+<section id="writing" class="section">
+  <div class="section-header">
+    <h2>Writing</h2>
+    <p class="section-note">Thoughts on engineering, AI, and tools.</p>
+  </div>
+  {posts.length === 0 ? (
+    <div class="card">
+      <p>Coming soon.</p>
+    </div>
+  ) : (
+    <div>
+      {posts.map((post) => {
+        const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        });
+        return (
+          <div class="writing-item">
+            <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+            <p>{post.data.description}</p>
+            <p class="writing-meta">{formattedDate}</p>
+          </div>
+        );
+      })}
+      <div style="margin-top:12px;">
+        <a href="/blog" style="text-decoration:underline;text-underline-offset:3px;font-weight:500;">All posts →</a>
+      </div>
+    </div>
+  )}
+</section>

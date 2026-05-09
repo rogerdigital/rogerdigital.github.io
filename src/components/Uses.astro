@@ -1,0 +1,37 @@
+---
+const categories = [
+  {
+    title: 'Editor & Dev',
+    items: ['Neovim', 'VS Code', 'iTerm2', 'Claude Code'],
+  },
+  {
+    title: 'Languages',
+    items: ['Swift', 'Python', 'TypeScript', 'Go'],
+  },
+  {
+    title: 'Productivity',
+    items: ['Linear', 'Notion', 'Arc Browser'],
+  },
+  {
+    title: 'Hardware',
+    items: ['MacBook Pro 14"'],
+  },
+];
+---
+
+<section id="uses" class="section">
+  <div class="section-header">
+    <h2>Uses</h2>
+    <p class="section-note">Tools and setup I use daily.</p>
+  </div>
+  <div class="list-grid uses-grid">
+    {categories.map((cat) => (
+      <div class="card uses-card">
+        <h3>{cat.title}</h3>
+        <ul class="uses-list">
+          {cat.items.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>
