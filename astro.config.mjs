@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
 
