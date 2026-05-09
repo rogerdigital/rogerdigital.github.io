@@ -1,0 +1,32 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const updatedDate = 'May 2026';
+---
+
+<BaseLayout
+  title="Now | Roger Deng"
+  description="What Roger Deng is focused on right now."
+>
+  <main class="container">
+    <section class="hero">
+      <h1>Now</h1>
+      <p class="subtitle">What I'm focused on at this point in time.</p>
+    </section>
+
+    <section class="section">
+      <div class="focus-summary">
+        <ul class="now-list">
+          <li class="now-item">Building — QuantPilot agent workflows</li>
+          <li class="now-item">Reading — Designing Data-Intensive Applications</li>
+          <li class="now-item">Exploring — Digital biology simulations</li>
+          <li class="now-item">Contributing — OpenClaw</li>
+        </ul>
+        <p class="meta" style="margin-top:16px;">Last updated: {updatedDate}</p>
+      </div>
+      <div style="margin-top:20px;">
+        <p class="meta">Inspired by <a href="https://nownownow.com" target="_blank" rel="noreferrer" style="text-decoration:underline;text-underline-offset:3px;">nownownow.com</a></p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
