@@ -1,0 +1,76 @@
+---
+
+---
+
+<section id="oss" class="section">
+  <div class="section-header">
+    <h2>Open Source</h2>
+    <p class="section-note">Open-source AI assistant project I contribute to, plus concrete merged work.</p>
+  </div>
+  <div class="card">
+    <p class="card-label">Contribution Log</p>
+    <h3 style="margin-bottom:8px;">开源贡献摘要 · 2026-04-29</h3>
+    <p>4 个项目，6 条 PR：1 merged，1 co-authored，2 in review，2 closed。</p>
+    <p class="links-row">
+      <a href="/oss/2026-04-29">查看详情 →</a>
+    </p>
+  </div>
+
+  <div class="card feature-card">
+    <h3>OpenClaw</h3>
+    <p>
+      Open-source AI assistant project I contribute to.
+    </p>
+    <p class="links-row">
+      <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project →</a>
+    </p>
+    <div class="nested-section">
+      <p class="card-label">Selected Contributions</p>
+
+      <div class="nested-card">
+        <h4>TUI streaming watchdog reconnect recovery</h4>
+        <p>
+          Resynced the TUI streaming watchdog after reconnects, kept active tool and
+          lifecycle events as proof-of-life, and added regression coverage for stale
+          reconnect runs.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+
+      <div class="nested-card">
+        <h4>WhatsApp DM voice-note transcription</h4>
+        <p>
+          Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive
+          spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+
+      <div class="nested-card">
+        <h4>Heartbeat session key canonicalization</h4>
+        <p>
+          Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions,
+          added stale-key cleanup, and covered the behavior with regression tests.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+
+      <div class="nested-card">
+        <h4>Browser launch blank-tab fix</h4>
+        <p>
+          Removed an unintended extra blank tab on browser launch by fixing launch arguments and
+          locking the behavior with a regression test.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const categories = [
+  {
+    title: 'Editor & Dev',
+    items: ['Neovim', 'VS Code', 'iTerm2', 'Claude Code'],
+  },
+  {
+    title: 'Languages',
+    items: ['Swift', 'Python', 'TypeScript', 'Go'],
+  },
+  {
+    title: 'Productivity',
+    items: ['Linear', 'Notion', 'Arc Browser'],
+  },
+  {
+    title: 'Hardware',
+    items: ['MacBook Pro 14"'],
+  },
+];
+---
+
+<BaseLayout
+  title="Uses | Roger Deng"
+  description="Tools and setup Roger Deng uses daily."
+>
+  <main class="container">
+    <section class="hero">
+      <h1>Uses</h1>
+      <p class="subtitle">Tools and setup I use daily.</p>
+    </section>
+
+    <section class="section">
+      <div class="list-grid uses-grid">
+        {categories.map((cat) => (
+          <div class="card uses-card">
+            <h3>{cat.title}</h3>
+            <ul class="uses-list">
+              {cat.items.map((item) => <li>{item}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div style="margin-top:20px;">
+        <p class="meta">Inspired by <a href="https://uses.tech" target="_blank" rel="noreferrer" style="text-decoration:underline;text-underline-offset:3px;">uses.tech</a></p>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

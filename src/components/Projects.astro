@@ -1,0 +1,28 @@
+---
+import ProjectCard from './ProjectCard.astro';
+
+const projects = [
+  {
+    title: 'QuantPilot',
+    description: 'Autonomous quantitative trading platform focused on agent-driven decision workflows.',
+    tags: ['Python', 'Agent', 'Quant'],
+    repoUrl: 'https://github.com/rogerdigital/quantpilot',
+  },
+  {
+    title: 'Publio',
+    description: 'Multi-platform publishing tool for writing once and distributing everywhere.',
+    tags: ['TypeScript', 'Publishing'],
+    repoUrl: 'https://github.com/rogerdigital/publio',
+  },
+];
+---
+
+<section id="projects" class="section">
+  <div class="section-header">
+    <h2>Projects</h2>
+    <p class="section-note">Selected work across autonomous decision systems and publishing workflows.</p>
+  </div>
+  <div class="project-grid">
+    {projects.map((p) => <ProjectCard {...p} />)}
+  </div>
+</section>

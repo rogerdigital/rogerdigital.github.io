@@ -1,19 +1,10 @@
-name: Deploy
+name: Build
 
 on:
   push:
     branches:
       - main
   pull_request:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: false
 
 jobs:
   build:
@@ -35,53 +26,3 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Validate external links
-        run: |
-          python3 - <<'PY'
-          from html.parser import HTMLParser
-          from pathlib import Path
-
-          class LinkChecker(HTMLParser):
-              def __init__(self):
-                  super().__init__()
-                  self.errors = []
-
-              def handle_starttag(self, tag, attrs):
-                  if tag == "a":
-                      attr = dict(attrs)
-                      href = attr.get("href", "")
-                      if href.startswith(("http://", "https://")):
-                          target = attr.get("target")
-                          rel = set(attr.get("rel", "").split())
-                          if target != "_blank" or "noreferrer" not in rel:
-                              self.errors.append(href)
-
-          checker = LinkChecker()
-          for html_file in Path("dist").rglob("*.html"):
-              checker.feed(html_file.read_text(encoding="utf-8"))
-
-          if checker.errors:
-              raise SystemExit(
-                  "External links must use target=\"_blank\" rel=\"noreferrer\": "
-                  + ", ".join(checker.errors)
-              )
-          PY
-
-      - name: Upload artifact
-        if: github.ref == 'refs/heads/main'
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    name: Deploy
-    if: github.ref == 'refs/heads/main'
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4

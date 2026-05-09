@@ -1,29 +1,24 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
   .filter(({ data }) => !data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 5);
 ---
 
-<BaseLayout
-  title="Blog | Roger Deng"
-  description="Thoughts on engineering, AI, and tools."
->
-  <main class="container">
-    <section class="hero">
-      <h1>Writing</h1>
-      <p class="subtitle">Thoughts on engineering, AI, and tools.</p>
-    </section>
-
-    <section class="section">
-      {posts.length === 0 && (
-        <div class="card">
-          <p>No posts yet. Check back soon.</p>
-        </div>
-      )}
+<section id="writing" class="section">
+  <div class="section-header">
+    <h2>Writing</h2>
+    <p class="section-note">Thoughts on engineering, AI, and tools.</p>
+  </div>
+  {posts.length === 0 ? (
+    <div class="card">
+      <p>Coming soon.</p>
+    </div>
+  ) : (
+    <div>
       {posts.map((post) => {
         const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
           year: 'numeric',
@@ -38,6 +33,9 @@ const posts = allPosts
           </div>
         );
       })}
-    </section>
-  </main>
-</BaseLayout>
+      <div style="margin-top:12px;">
+        <a href="/blog" style="text-decoration:underline;text-underline-offset:3px;font-weight:500;">All posts →</a>
+      </div>
+    </div>
+  )}
+</section>
