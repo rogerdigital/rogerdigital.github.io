@@ -93,6 +93,7 @@ code {
 
 .nav-link.active {
   color: var(--color-text);
+  background: var(--color-accent-soft);
 }
 
 .logo a {
