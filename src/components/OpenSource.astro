@@ -19,6 +19,18 @@
       <p class="card-label">Selected Contributions</p>
 
       <div class="nested-card">
+        <h4>Telegram non-streaming media deduplication</h4>
+        <p>
+          Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by
+          tracking block-sent media URLs, filtering final reply payloads, and covering the pure
+          deduplication path with regression tests.
+        </p>
+        <p class="links-row">
+          <a href="https://github.com/openclaw/openclaw/pull/78420" target="_blank" rel="noreferrer">View PR →</a>
+        </p>
+      </div>
+
+      <div class="nested-card">
         <h4>TUI streaming watchdog reconnect recovery</h4>
         <p>
           Resynced the TUI streaming watchdog after reconnects, kept active tool and

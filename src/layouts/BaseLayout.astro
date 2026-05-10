@@ -14,7 +14,7 @@ const { title, description, lang = 'en', backLink } = Astro.props;
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} data-theme="dark" data-theme-choice="system">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -27,6 +27,20 @@ const { title, description, lang = 'en', backLink } = Astro.props;
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <script is:inline>
+      (() => {
+        const storageKey = 'rogerdigital-theme';
+        const root = document.documentElement;
+        const media = window.matchMedia('(prefers-color-scheme: light)');
+        const stored = localStorage.getItem(storageKey);
+        const choice = ['light', 'dark', 'system'].includes(stored || '') ? stored : 'system';
+        const resolved = choice === 'system' ? (media.matches ? 'light' : 'dark') : choice;
+
+        root.dataset.themeChoice = choice;
+        root.dataset.theme = resolved;
+        root.style.colorScheme = resolved;
+      })();
+    </script>
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

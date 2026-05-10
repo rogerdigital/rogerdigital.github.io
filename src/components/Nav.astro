@@ -27,8 +27,63 @@ const isHome = Astro.url.pathname === '/';
         <a class="nav-link" href="/#contact">Contact</a>
       </div>
     )}
+    <div class="theme-switcher" aria-label="Theme mode">
+      <button type="button" class="theme-option" data-theme-choice="light" aria-label="Use light theme" title="Light theme">☼</button>
+      <button type="button" class="theme-option" data-theme-choice="dark" aria-label="Use dark theme" title="Dark theme">◐</button>
+      <button type="button" class="theme-option theme-option-system" data-theme-choice="system" aria-label="Use system theme" title="System theme">Auto</button>
+    </div>
   </nav>
 </header>
+
+<script>
+  (() => {
+    const storageKey = 'rogerdigital-theme';
+    const root = document.documentElement;
+    const media = window.matchMedia('(prefers-color-scheme: light)');
+    const options = document.querySelectorAll<HTMLButtonElement>('.theme-option');
+    const validChoices = ['light', 'dark', 'system'];
+
+    const readChoice = () => {
+      const stored = localStorage.getItem(storageKey);
+      return validChoices.includes(stored || '') ? stored : 'system';
+    };
+
+    const resolveTheme = (choice: string) => (
+      choice === 'system' ? (media.matches ? 'light' : 'dark') : choice
+    );
+
+    const applyTheme = (choice: string) => {
+      const resolved = resolveTheme(choice);
+      root.dataset.themeChoice = choice;
+      root.dataset.theme = resolved;
+      root.style.colorScheme = resolved;
+
+      options.forEach((option) => {
+        const isActive = option.dataset.themeChoice === choice;
+        option.classList.toggle('active', isActive);
+        option.setAttribute('aria-pressed', String(isActive));
+      });
+    };
+
+    options.forEach((option) => {
+      option.addEventListener('click', () => {
+        const choice = option.dataset.themeChoice || 'system';
+        if (choice === 'system') {
+          localStorage.removeItem(storageKey);
+        } else {
+          localStorage.setItem(storageKey, choice);
+        }
+        applyTheme(choice);
+      });
+    });
+
+    media.addEventListener('change', () => {
+      if (readChoice() === 'system') applyTheme('system');
+    });
+
+    applyTheme(readChoice());
+  })();
+</script>
 
 {!backLink && (
   <script>
