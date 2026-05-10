@@ -7,99 +7,73 @@
     <p class="section-note">Open-source projects I contribute to.</p>
   </div>
 
-  <div class="card feature-card">
-    <h3>OpenClaw</h3>
-    <p>
-      Open-source AI assistant project I contribute to.
-    </p>
-    <p class="links-row">
+  <div>
+    <h3 class="flat-group-title">OpenClaw</h3>
+    <p class="flat-group-desc">Open-source AI assistant project I contribute to.
       <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project →</a>
     </p>
-    <div class="nested-section">
-      <p class="card-label">Selected Contributions</p>
 
-      <div class="nested-card">
-        <h4>Telegram non-streaming media deduplication</h4>
-        <p>
-          Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by
-          tracking block-sent media URLs, filtering final reply payloads, and covering the pure
-          deduplication path with regression tests.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw/pull/78420" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <p class="card-label">Selected Contributions</p>
 
-      <div class="nested-card">
-        <h4>TUI streaming watchdog reconnect recovery</h4>
-        <p>
-          Resynced the TUI streaming watchdog after reconnects, kept active tool and
-          lifecycle events as proof-of-life, and added regression coverage for stale
-          reconnect runs.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <div class="flat-item">
+      <h4><a href="https://github.com/openclaw/openclaw/pull/78420" target="_blank" rel="noreferrer">Telegram non-streaming media deduplication</a></h4>
+      <p>
+        Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by
+        tracking block-sent media URLs, filtering final reply payloads, and covering the pure
+        deduplication path with regression tests.
+      </p>
+    </div>
 
-      <div class="nested-card">
-        <h4>WhatsApp DM voice-note transcription</h4>
-        <p>
-          Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive
-          spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <div class="flat-item">
+      <h4><a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">TUI streaming watchdog reconnect recovery</a></h4>
+      <p>
+        Resynced the TUI streaming watchdog after reconnects, kept active tool and
+        lifecycle events as proof-of-life, and added regression coverage for stale
+        reconnect runs.
+      </p>
+    </div>
 
-      <div class="nested-card">
-        <h4>Heartbeat session key canonicalization</h4>
-        <p>
-          Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions,
-          added stale-key cleanup, and covered the behavior with regression tests.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <div class="flat-item">
+      <h4><a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">WhatsApp DM voice-note transcription</a></h4>
+      <p>
+        Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive
+        spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.
+      </p>
+    </div>
 
-      <div class="nested-card">
-        <h4>Browser launch blank-tab fix</h4>
-        <p>
-          Removed an unintended extra blank tab on browser launch by fixing launch arguments and
-          locking the behavior with a regression test.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <div class="flat-item">
+      <h4><a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">Heartbeat session key canonicalization</a></h4>
+      <p>
+        Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions,
+        added stale-key cleanup, and covered the behavior with regression tests.
+      </p>
+    </div>
+
+    <div class="flat-item">
+      <h4><a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">Browser launch blank-tab fix</a></h4>
+      <p>
+        Removed an unintended extra blank tab on browser launch by fixing launch arguments and
+        locking the behavior with a regression test.
+      </p>
     </div>
   </div>
 
-  <div class="card feature-card">
-    <h3>OpenChronicle</h3>
-    <p>
-      Open-source personal knowledge management with LLM-powered memory compaction.
-    </p>
-    <p class="links-row">
+  <div style="margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--color-border);">
+    <h3 class="flat-group-title">OpenChronicle</h3>
+    <p class="flat-group-desc">Open-source personal knowledge management with LLM-powered memory compaction.
       <a href="https://github.com/Einsia/OpenChronicle" target="_blank" rel="noreferrer">Project →</a>
     </p>
-    <div class="nested-section">
-      <p class="card-label">Selected Contributions</p>
 
-      <div class="nested-card">
-        <h4>Compact overwriting concurrent writes fix</h4>
-        <p>
-          <code>compact_file</code> LLM rewrite could overwrite entries appended by concurrent
-          reducers. Added compare-and-swap writeback: re-read the file under per-file lock before
-          writing, skip compaction if changed, and refresh FTS rows atomically inside a SQLite
-          savepoint.
-        </p>
-        <p class="links-row">
-          <a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">View PR →</a>
-        </p>
-      </div>
+    <p class="card-label">Selected Contributions</p>
+
+    <div class="flat-item">
+      <h4><a href="https://github.com/Einsia/OpenChronicle/pull/25" target="_blank" rel="noreferrer">Compact overwriting concurrent writes fix</a></h4>
+      <p>
+        <code>compact_file</code> LLM rewrite could overwrite entries appended by concurrent
+        reducers. Added compare-and-swap writeback: re-read the file under per-file lock before
+        writing, skip compaction if changed, and refresh FTS rows atomically inside a SQLite
+        savepoint.
+      </p>
     </div>
   </div>
 </section>

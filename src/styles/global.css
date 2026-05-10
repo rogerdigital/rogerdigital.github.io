@@ -138,8 +138,6 @@ h1 .accent {
 .container > *:nth-child(6) { animation-delay: 0.40s; }
 .container > *:nth-child(7) { animation-delay: 0.48s; }
 .container > *:nth-child(8) { animation-delay: 0.56s; }
-.container > *:nth-child(9) { animation-delay: 0.64s; }
-.container > *:nth-child(10) { animation-delay: 0.72s; }
 
 @media (prefers-reduced-motion: reduce) {
   .container > * {
@@ -340,13 +338,6 @@ h1 {
 .list-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 16px;
   margin-top: 24px;
 }
@@ -635,6 +626,84 @@ h1 {
   letter-spacing: 0.02em;
 }
 
+/* ── Flat list (Projects, OpenSource, Uses) ── */
+.flat-item {
+  padding: 18px 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.flat-item:first-child { padding-top: 0; }
+.flat-item:last-child { border-bottom: none; }
+
+.flat-item h3,
+.flat-item h4 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.flat-item h3 a,
+.flat-item h4 a {
+  transition: color 0.15s ease;
+}
+
+.flat-item h3 a:hover,
+.flat-item h4 a:hover {
+  color: var(--color-accent);
+}
+
+.flat-item > p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.flat-group-title {
+  margin: 0 0 6px;
+  font-size: 18px;
+  letter-spacing: -0.02em;
+}
+
+.flat-group-desc {
+  margin: 0;
+  font-size: 14px;
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+.flat-group-desc a {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent-line);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.2s ease;
+}
+
+.flat-group-desc a:hover {
+  text-decoration-color: var(--color-accent);
+}
+
+.hero-bio {
+  margin-top: 36px;
+  padding-top: 36px;
+  border-top: 1px solid var(--color-border);
+}
+
+/* ── Uses flat ── */
+.uses-category {
+  padding: 14px 0;
+}
+
+.uses-flat-items {
+  margin: 6px 0 0;
+  font-size: 15px;
+  color: var(--color-text-secondary);
+  letter-spacing: -0.01em;
+}
+
 /* ── Blog post ── */
 .blog-post-header {
   margin-bottom: 32px;
@@ -761,10 +830,6 @@ h1 {
 /* ── Responsive ── */
 @media (max-width: 800px) {
   .list-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .project-grid {
     grid-template-columns: 1fr;
   }
 

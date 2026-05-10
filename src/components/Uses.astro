@@ -24,13 +24,11 @@ const categories = [
     <h2>Uses</h2>
     <p class="section-note">Tools and setup I use daily.</p>
   </div>
-  <div class="list-grid uses-grid">
+  <div>
     {categories.map((cat) => (
-      <div class="card uses-card">
-        <h3>{cat.title}</h3>
-        <ul class="uses-list">
-          {cat.items.map((item) => <li>{item}</li>)}
-        </ul>
+      <div class="flat-item uses-category">
+        <p class="card-label">{cat.title}</p>
+        <p class="uses-flat-items">{cat.items.join(' · ')}</p>
       </div>
     ))}
   </div>
