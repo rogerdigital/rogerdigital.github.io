@@ -12,17 +12,44 @@
   --color-accent: #809FFF;
   --color-accent-hover: #99b3ff;
   --color-accent-soft: rgba(128, 159, 255, 0.1);
+  --color-accent-line: rgba(128, 159, 255, 0.3);
   --color-code-bg: #121820;
+  --color-header-bg: rgba(12, 15, 17, 0.85);
+  --color-ambient: rgba(128, 159, 255, 0.05);
 
   --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
+html[data-theme='light'] {
+  --color-bg: #f7f4ed;
+  --color-surface: #fffdf7;
+  --color-surface-hover: #f1ece1;
+  --color-text: #171a1f;
+  --color-text-secondary: #4f5a66;
+  --color-nav: #68727d;
+  --color-muted: #7f8a96;
+  --color-border: rgba(23, 26, 31, 0.09);
+  --color-border-strong: rgba(23, 26, 31, 0.16);
+  --color-accent: #d97757;
+  --color-accent-hover: #b85f45;
+  --color-accent-soft: rgba(217, 119, 87, 0.13);
+  --color-accent-line: rgba(217, 119, 87, 0.34);
+  --color-code-bg: #ebe7dc;
+  --color-header-bg: rgba(247, 244, 237, 0.86);
+  --color-ambient: rgba(217, 119, 87, 0.08);
+}
+
 /* ── Reset & base ── */
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
+html[data-theme='light'] { color-scheme: light; }
 
 :target { scroll-margin-top: 72px; }
 
@@ -33,6 +60,7 @@ body {
   line-height: 1.7;
   color: var(--color-text);
   background: var(--color-bg);
+  transition: background 0.2s ease, color 0.2s ease;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -45,7 +73,7 @@ body::before {
   left: 0;
   right: 0;
   height: 600px;
-  background: radial-gradient(ellipse at 50% -20%, rgba(128, 159, 255, 0.05) 0%, transparent 70%);
+  background: radial-gradient(ellipse at 50% -20%, var(--color-ambient) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
 }
@@ -124,7 +152,7 @@ h1 .accent {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(12, 15, 17, 0.85);
+  background: var(--color-header-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--color-border);
@@ -135,13 +163,16 @@ h1 .accent {
   justify-content: space-between;
   align-items: center;
   padding: 16px 0;
+  gap: 16px;
 }
 
 .logo {
+  flex: 0 0 auto;
   font-family: var(--font-serif);
   font-weight: 500;
   font-size: 19px;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .logo a {
@@ -155,6 +186,7 @@ h1 .accent {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--color-nav);
+  margin-left: auto;
 }
 
 .nav-link {
@@ -172,6 +204,55 @@ h1 .accent {
 .nav-link.active {
   color: var(--color-accent);
   background: var(--color-accent-soft);
+}
+
+.theme-switcher {
+  display: grid;
+  grid-template-columns: 28px 28px 42px;
+  align-items: center;
+  padding: 3px;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-surface) 78%, transparent);
+}
+
+.theme-option {
+  width: 28px;
+  height: 26px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--color-nav);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.16s ease, color 0.16s ease, transform 0.16s ease;
+}
+
+.theme-option-system {
+  width: 42px;
+  font-size: 10px;
+  letter-spacing: 0;
+}
+
+.theme-option:hover {
+  color: var(--color-text);
+}
+
+.theme-option.active {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+.theme-option:active {
+  transform: scale(0.94);
+}
+
+.theme-option:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
 }
 
 /* ── Hero ── */
@@ -380,7 +461,7 @@ h1 {
   font-weight: 500;
   font-size: 14px;
   text-decoration: underline;
-  text-decoration-color: rgba(128, 159, 255, 0.3);
+  text-decoration-color: var(--color-accent-line);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.2s ease;
@@ -479,7 +560,7 @@ h1 {
   color: var(--color-accent);
   font-weight: 500;
   text-decoration: underline;
-  text-decoration-color: rgba(128, 159, 255, 0.3);
+  text-decoration-color: var(--color-accent-line);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.2s ease;
@@ -631,7 +712,7 @@ h1 {
 .blog-post-content a {
   color: var(--color-accent);
   text-decoration: underline;
-  text-decoration-color: rgba(128, 159, 255, 0.3);
+  text-decoration-color: var(--color-accent-line);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.15s ease;
@@ -667,7 +748,7 @@ h1 {
   font-weight: 500;
   font-size: 14px;
   text-decoration: underline;
-  text-decoration-color: rgba(128, 159, 255, 0.3);
+  text-decoration-color: var(--color-accent-line);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.2s ease;

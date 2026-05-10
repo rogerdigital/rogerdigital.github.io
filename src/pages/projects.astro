@@ -37,10 +37,10 @@ import ContributionCard from "../components/ContributionCard.astro";
       </div>
       <div class="card">
         <p class="card-label">Contribution Log</p>
-        <h3 style="margin-bottom:8px;">开源贡献摘要 · 2026-04-29</h3>
-        <p>4 个项目，6 条 PR：1 merged，1 co-authored，2 in review，2 closed。</p>
+        <h3 style="margin-bottom:8px;">开源贡献摘要</h3>
+        <p>4 个项目，7 条 PR：2 merged，1 co-authored，2 in review，2 closed。</p>
         <p class="links-row">
-          <a href="/contributions/oss-2026-04-29">查看详情 &rarr;</a>
+          <a href="/contributions/oss-2026-04-29">查看 2026-04-29 详情 &rarr;</a>
         </p>
       </div>
 
@@ -52,6 +52,12 @@ import ContributionCard from "../components/ContributionCard.astro";
         </p>
         <div class="nested-section">
           <p class="card-label">Selected Contributions</p>
+
+          <ContributionCard
+            title="Telegram non-streaming media deduplication"
+            description='Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by tracking block-sent media URLs, filtering final reply payloads, and covering the pure deduplication path with regression tests.'
+            link="https://github.com/openclaw/openclaw/pull/78420"
+          />
 
           <ContributionCard
             title="TUI streaming watchdog reconnect recovery"
