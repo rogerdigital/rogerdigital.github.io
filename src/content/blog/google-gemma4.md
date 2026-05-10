@@ -1,3 +1,10 @@
+---
+title: "Google Gemma 4：一次真正意义上的代际跨越"
+description: "Gemma 4 四种尺寸全系列原生多模态，Apache 2.0 开源，Agent 能力 +1200%——不只是性能提升，是结构性跨越。"
+pubDate: 2026-05-10
+tags: ["ai", "open-source", "google"]
+---
+
 # Google Gemma 4：一次真正意义上的代际跨越
 
 > 写于 2026 年 5 月 | 数据截至 2026 年 4 月
