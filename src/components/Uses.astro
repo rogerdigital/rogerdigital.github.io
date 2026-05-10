@@ -1,20 +1,26 @@
 ---
+const updatedDate = 'May 2026';
+
 const categories = [
   {
-    title: 'Editor & Dev',
-    items: ['Neovim', 'VS Code', 'iTerm2', 'Claude Code'],
+    title: 'Languages & Frameworks',
+    items: [
+      { name: 'TypeScript', icon: 'typescript', color: '3178C6' },
+      { name: 'Node.js', icon: 'nodedotjs', color: '5FA04E' },
+      { name: 'React', icon: 'react', color: '61DAFB' },
+      { name: 'Swift', icon: 'swift', color: 'F05138' },
+      { name: 'SwiftUI', icon: 'swift', color: 'F05138' },
+    ],
   },
   {
-    title: 'Languages',
-    items: ['Swift', 'Python', 'TypeScript', 'Go'],
-  },
-  {
-    title: 'Productivity',
-    items: ['Linear', 'Notion', 'Arc Browser'],
-  },
-  {
-    title: 'Hardware',
-    items: ['MacBook Pro 14"'],
+    title: 'Tooling & Workflow',
+    items: [
+      { name: 'Claude', icon: 'anthropic', color: 'D4A574' },
+      { name: 'Codex', svg: 'codex' },
+      { name: 'CLI', svg: 'cli' },
+      { name: 'macOS', icon: 'apple', color: 'A2AAAD' },
+      { name: 'Web', icon: 'googlechrome', color: '4285F4' },
+    ],
   },
 ];
 ---
@@ -26,10 +32,30 @@ const categories = [
   </div>
   <div>
     {categories.map((cat) => (
-      <div class="flat-item uses-category">
+      <div style="margin-bottom: 28px;">
         <p class="card-label">{cat.title}</p>
-        <p class="uses-flat-items">{cat.items.join(' · ')}</p>
+        <div class="uses-icon-grid">
+          {cat.items.map((item) => (
+            <div class="uses-icon-item">
+              {item.svg === 'codex' ? (
+                <svg class="uses-custom-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.8"/><path d="M9 9l-3 3 3 3M15 9l3 3-3 3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ) : item.svg === 'cli' ? (
+                <svg class="uses-custom-icon" width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 17l6-5-6-5M12 19h8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              ) : (
+                <img
+                  src={`https://cdn.simpleicons.org/${item.icon}/${item.color}`}
+                  alt={item.name}
+                  width="18"
+                  height="18"
+                  loading="lazy"
+                />
+              )}
+              <span>{item.name}</span>
+            </div>
+          ))}
+        </div>
       </div>
     ))}
+    <p class="meta">Last updated: {updatedDate}</p>
   </div>
 </section>
