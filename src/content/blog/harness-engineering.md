@@ -1,3 +1,10 @@
+---
+title: "Harness Engineering：AI Agent 时代真正缺的那块拼图"
+description: "Harness Engineering 不是新模型也不是新框架，而是一种工程思路的命名——让无数工程师感到如释重负的命名。"
+pubDate: 2026-05-10
+tags: ["ai", "engineering"]
+---
+
 # Harness Engineering：AI Agent 时代真正缺的那块拼图
 
 > 写于 2026 年 5 月 | 数据截至 2026 年 4 月

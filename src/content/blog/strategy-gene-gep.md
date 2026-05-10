@@ -1,3 +1,10 @@
+---
+title: "Strategy Gene：让 Agent 真正学会而不是记住"
+description: "基于 arXiv:2604.15097，探讨如何通过 Strategy Gene 让 Agent 系统真正习得策略，而非依赖文档堆叠的硬编码记忆。"
+pubDate: 2026-05-10
+tags: ["ai", "paper"]
+---
+
 # Strategy Gene：让 Agent 真正"学会"而不是"记住"
 
 > 写于 2026 年 5 月 | 基于 arXiv:2604.15097（2026.04.16）
