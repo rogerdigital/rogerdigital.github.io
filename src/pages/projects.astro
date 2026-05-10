@@ -1,7 +1,20 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
-import ContributionCard from "../components/ContributionCard.astro";
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'QuantPilot',
+    description: 'Autonomous quantitative trading platform focused on agent-driven decision workflows.',
+    tags: ['Python', 'Agent', 'Quant'],
+    repoUrl: 'https://github.com/rogerdigital/quantpilot',
+  },
+  {
+    title: 'Publio',
+    description: 'Multi-platform publishing tool for writing once and distributing everywhere.',
+    tags: ['TypeScript', 'Publishing'],
+    repoUrl: 'https://github.com/rogerdigital/publio',
+  },
+];
 ---
 
 <BaseLayout
@@ -14,19 +27,16 @@ import ContributionCard from "../components/ContributionCard.astro";
         <h2>Projects</h2>
         <p class="section-note">Selected work across autonomous decision systems and publishing workflows.</p>
       </div>
-      <div class="project-grid">
-        <ProjectCard
-          title="QuantPilot"
-          description="Autonomous quantitative trading platform focused on agent-driven decision workflows."
-          tags={["Python", "Agent", "Quant"]}
-          repoUrl="https://github.com/rogerdigital/quantpilot"
-        />
-        <ProjectCard
-          title="Publio"
-          description="Multi-platform publishing tool for writing once and distributing everywhere."
-          tags={["TypeScript", "Publishing"]}
-          repoUrl="https://github.com/rogerdigital/publio"
-        />
+      <div>
+        {projects.map((p) => (
+          <div class="flat-item">
+            <h3><a href={p.repoUrl} target="_blank" rel="noreferrer">{p.title}</a></h3>
+            <p>{p.description}</p>
+            <div class="tech-tags">
+              {p.tags.map((tag) => <span>{tag}</span>)}
+            </div>
+          </div>
+        ))}
       </div>
     </section>
 
@@ -35,53 +45,45 @@ import ContributionCard from "../components/ContributionCard.astro";
         <h2>Open Source</h2>
         <p class="section-note">Open-source AI assistant project I contribute to, plus concrete merged work.</p>
       </div>
-      <div class="card">
+      <div class="flat-item">
         <p class="card-label">Contribution Log</p>
-        <h3 style="margin-bottom:8px;">开源贡献摘要</h3>
         <p>4 个项目，7 条 PR：2 merged，1 co-authored，2 in review，2 closed。</p>
-        <p class="links-row">
-          <a href="/contributions/oss-2026-04-29">查看 2026-04-29 详情 &rarr;</a>
-        </p>
+        <div style="margin-top:8px;">
+          <a href="/contributions/oss-2026-04-29" class="accent-link">查看 2026-04-29 详情 →</a>
+        </div>
       </div>
 
-      <div class="card feature-card">
-        <h3>OpenClaw</h3>
-        <p>Open-source AI assistant project I contribute to.</p>
-        <p class="links-row">
-          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project &rarr;</a>
+      <div style="margin-top: 32px;">
+        <h3 class="flat-group-title">OpenClaw</h3>
+        <p class="flat-group-desc">Open-source AI assistant project I contribute to.
+          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project →</a>
         </p>
-        <div class="nested-section">
-          <p class="card-label">Selected Contributions</p>
 
-          <ContributionCard
-            title="Telegram non-streaming media deduplication"
-            description='Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by tracking block-sent media URLs, filtering final reply payloads, and covering the pure deduplication path with regression tests.'
-            link="https://github.com/openclaw/openclaw/pull/78420"
-          />
+        <p class="card-label">Selected Contributions</p>
 
-          <ContributionCard
-            title="TUI streaming watchdog reconnect recovery"
-            description='Resynced the TUI streaming watchdog after reconnects, kept active tool and lifecycle events as proof-of-life, and added regression coverage for stale reconnect runs.'
-            link="https://github.com/openclaw/openclaw/pull/74224"
-          />
+        <div class="flat-item">
+          <h4><a href="https://github.com/openclaw/openclaw/pull/78420" target="_blank" rel="noreferrer">Telegram non-streaming media deduplication</a></h4>
+          <p>Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by tracking block-sent media URLs, filtering final reply payloads, and covering the pure deduplication path with regression tests.</p>
+        </div>
 
-          <ContributionCard
-            title="WhatsApp DM voice-note transcription"
-            description='Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.'
-            link="https://github.com/openclaw/openclaw/pull/64120"
-          />
+        <div class="flat-item">
+          <h4><a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">TUI streaming watchdog reconnect recovery</a></h4>
+          <p>Resynced the TUI streaming watchdog after reconnects, kept active tool and lifecycle events as proof-of-life, and added regression coverage for stale reconnect runs.</p>
+        </div>
 
-          <ContributionCard
-            title="Heartbeat session key canonicalization"
-            description='Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions, added stale-key cleanup, and covered the behavior with regression tests.'
-            link="https://github.com/openclaw/openclaw/pull/59606"
-          />
+        <div class="flat-item">
+          <h4><a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">WhatsApp DM voice-note transcription</a></h4>
+          <p>Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.</p>
+        </div>
 
-          <ContributionCard
-            title="Browser launch blank-tab fix"
-            description="Removed an unintended extra blank tab on browser launch by fixing launch arguments and locking the behavior with a regression test."
-            link="https://github.com/openclaw/openclaw/pull/52451"
-          />
+        <div class="flat-item">
+          <h4><a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">Heartbeat session key canonicalization</a></h4>
+          <p>Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions, added stale-key cleanup, and covered the behavior with regression tests.</p>
+        </div>
+
+        <div class="flat-item">
+          <h4><a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">Browser launch blank-tab fix</a></h4>
+          <p>Removed an unintended extra blank tab on browser launch by fixing launch arguments and locking the behavior with a regression test.</p>
         </div>
       </div>
     </section>

@@ -1,6 +1,4 @@
 ---
-import ProjectCard from './ProjectCard.astro';
-
 const projects = [
   {
     title: 'QuantPilot',
@@ -22,7 +20,15 @@ const projects = [
     <h2>Projects</h2>
     <p class="section-note">Selected work across autonomous decision systems and publishing workflows.</p>
   </div>
-  <div class="project-grid">
-    {projects.map((p) => <ProjectCard {...p} />)}
+  <div>
+    {projects.map((p) => (
+      <div class="flat-item">
+        <h3><a href={p.repoUrl} target="_blank" rel="noreferrer">{p.title}</a></h3>
+        <p>{p.description}</p>
+        <div class="tech-tags">
+          {p.tags.map((tag) => <span>{tag}</span>)}
+        </div>
+      </div>
+    ))}
   </div>
 </section>
