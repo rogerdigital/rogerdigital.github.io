@@ -1,5 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { getByProject, getProjects } from '../data/oss-contributions';
+
+const MAX_DISPLAY = 3;
+const ossProjects = getProjects();
 
 const projects = [
   {
@@ -43,49 +47,39 @@ const projects = [
     <section class="section">
       <div class="section-header">
         <h2>Open Source</h2>
-        <p class="section-note">Open-source AI assistant project I contribute to, plus concrete merged work.</p>
-      </div>
-      <div class="flat-item">
-        <p class="card-label">Contribution Log</p>
-        <p>4 个项目，7 条 PR：2 merged，1 co-authored，2 in review，2 closed。</p>
-        <div style="margin-top:8px;">
-          <a href="/contributions/oss-2026-04-29" class="accent-link">查看 2026-04-29 详情 →</a>
-        </div>
+        <p class="section-note">Open-source projects I contribute to, plus concrete merged work.</p>
       </div>
 
-      <div style="margin-top: 32px;">
-        <h3 class="flat-group-title">OpenClaw</h3>
-        <p class="flat-group-desc">Open-source AI assistant project I contribute to.
-          <a href="https://github.com/openclaw/openclaw" target="_blank" rel="noreferrer">Project →</a>
-        </p>
+      {ossProjects.map((project, idx) => {
+        const prs = getByProject(project.name);
+        const displayed = prs.slice(0, MAX_DISPLAY);
+        const hasMore = prs.length > MAX_DISPLAY;
+        const slug = project.name.toLowerCase().replace(/\s+/g, "-");
 
-        <p class="card-label">Selected Contributions</p>
+        return (
+          <div style={idx > 0 ? "margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border);" : "margin-top: 32px;"}>
+            <h3 class="flat-group-title">{project.name}</h3>
+            <p class="flat-group-desc">
+              <a href={project.url} target="_blank" rel="noreferrer">Project →</a>
+            </p>
 
-        <div class="flat-item">
-          <h4><a href="https://github.com/openclaw/openclaw/pull/78420" target="_blank" rel="noreferrer">Telegram non-streaming media deduplication</a></h4>
-          <p>Fixed duplicate <code>MEDIA:</code> attachment delivery in Telegram non-streaming mode by tracking block-sent media URLs, filtering final reply payloads, and covering the pure deduplication path with regression tests.</p>
-        </div>
+            <p class="card-label">Selected Contributions</p>
 
-        <div class="flat-item">
-          <h4><a href="https://github.com/openclaw/openclaw/pull/74224" target="_blank" rel="noreferrer">TUI streaming watchdog reconnect recovery</a></h4>
-          <p>Resynced the TUI streaming watchdog after reconnects, kept active tool and lifecycle events as proof-of-life, and added regression coverage for stale reconnect runs.</p>
-        </div>
+            {displayed.map((pr) => (
+              <div class="flat-item">
+                <h4><a href={pr.url} target="_blank" rel="noreferrer">{pr.title}</a></h4>
+                <p>{pr.description}</p>
+              </div>
+            ))}
 
-        <div class="flat-item">
-          <h4><a href="https://github.com/openclaw/openclaw/pull/64120" target="_blank" rel="noreferrer">WhatsApp DM voice-note transcription</a></h4>
-          <p>Restored preflight speech-to-text for WhatsApp DM voice notes so agents receive spoken text instead of raw <code>&lt;media:audio&gt;</code> placeholders when transcription succeeds.</p>
-        </div>
-
-        <div class="flat-item">
-          <h4><a href="https://github.com/openclaw/openclaw/pull/59606" target="_blank" rel="noreferrer">Heartbeat session key canonicalization</a></h4>
-          <p>Prevented runaway <code>:heartbeat</code> suffix accumulation in isolated sessions, added stale-key cleanup, and covered the behavior with regression tests.</p>
-        </div>
-
-        <div class="flat-item">
-          <h4><a href="https://github.com/openclaw/openclaw/pull/52451" target="_blank" rel="noreferrer">Browser launch blank-tab fix</a></h4>
-          <p>Removed an unintended extra blank tab on browser launch by fixing launch arguments and locking the behavior with a regression test.</p>
-        </div>
-      </div>
+            {hasMore && (
+              <div style="margin-top: 16px;">
+                <a href={`/oss/${slug}`} class="button">All PRs →</a>
+              </div>
+            )}
+          </div>
+        );
+      })}
     </section>
   </main>
 </BaseLayout>

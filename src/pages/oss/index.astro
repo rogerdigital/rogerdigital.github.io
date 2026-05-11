@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getByProject, getProjects } from "../../data/oss-contributions";
+
+const projects = getProjects();
+---
+
+<BaseLayout title="Open Source Contributions" description="All open-source pull requests I've contributed." backLink={{ label: "← Back", href: "/" }}>
+  <main class="container">
+    <section class="section">
+      <div class="section-header">
+        <h2>Open Source</h2>
+        <p class="section-note">Projects I contribute to.</p>
+      </div>
+
+      {projects.map((project, idx) => {
+        const count = getByProject(project.name).length;
+        const slug = project.name.toLowerCase().replace(/\s+/g, "-");
+        return (
+          <div class="flat-item" style={idx > 0 ? "margin-top: 8px;" : ""}>
+            <h3><a href={`/oss/${slug}`}>{project.name}</a></h3>
+            <p>{count} contributions · <a href={project.url} target="_blank" rel="noreferrer">GitHub →</a></p>
+          </div>
+        );
+      })}
+    </section>
+  </main>
+</BaseLayout>
