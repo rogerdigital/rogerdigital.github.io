@@ -1,0 +1,71 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { getByProject, getProjects } from "../../../data/oss-contributions";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const projects = getProjects();
+  return projects.flatMap((project) => {
+    const slug = project.name.toLowerCase().replace(/\s+/g, "-");
+    const prs = getByProject(project.name);
+    return paginate(prs, {
+      params: { project: slug },
+      pageSize: 20,
+      props: { projectName: project.name, projectUrl: project.url },
+    });
+  });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const { projectName, projectUrl } = Astro.props;
+const { project } = Astro.params;
+---
+
+<BaseLayout title={`${projectName} Contributions`} description={`Pull requests contributed to ${projectName}.`} backLink={{ label: "← Back", href: "/oss" }}>
+  <main class="container">
+    <section class="section">
+      <div class="section-header">
+        <h2>{projectName}</h2>
+        <p class="section-note">
+          {page.total} contributions ·
+          <a href={projectUrl} target="_blank" rel="noreferrer">GitHub →</a>
+        </p>
+      </div>
+
+      {page.data.map((pr) => (
+        <div class="flat-item">
+          <h4>
+            <a href={pr.url} target="_blank" rel="noreferrer">{pr.title}</a>
+            <span class="pr-meta">{pr.date}</span>
+          </h4>
+          <p>{pr.description}</p>
+        </div>
+      ))}
+
+      {page.lastPage > 1 && (
+        <nav class="pagination">
+          {page.url.prev ? (
+            <a href={page.url.prev} class="pagination-link">← Prev</a>
+          ) : (
+            <span class="pagination-link disabled">← Prev</span>
+          )}
+
+          {Array.from({ length: page.lastPage }, (_, i) => i + 1).map((num) => (
+            <a
+              href={num === 1 ? `/oss/${project}` : `/oss/${project}/${num}`}
+              class:list={["pagination-link", { active: num === page.currentPage }]}
+            >
+              {num}
+            </a>
+          ))}
+
+          {page.url.next ? (
+            <a href={page.url.next} class="pagination-link">Next →</a>
+          ) : (
+            <span class="pagination-link disabled">Next →</span>
+          )}
+        </nav>
+      )}
+    </section>
+  </main>
+</BaseLayout>
