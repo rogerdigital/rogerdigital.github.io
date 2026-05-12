@@ -1,16 +1,44 @@
 ---
-const projects = [
+const groups = [
   {
-    title: 'QuantPilot',
-    description: 'Autonomous quantitative trading platform focused on agent-driven decision workflows.',
-    tags: ['Python', 'Agent', 'Quant'],
-    repoUrl: 'https://github.com/rogerdigital/quantpilot',
+    label: 'Products',
+    projects: [
+      {
+        title: 'QuantPilot',
+        description: 'Autonomous quantitative trading platform focused on agent-driven decision workflows.',
+        tags: ['Python', 'Agent', 'Quant'],
+        repoUrl: 'https://github.com/rogerdigital/quantpilot',
+      },
+      {
+        title: 'Publio',
+        description: 'Multi-platform publishing tool for writing once and distributing everywhere.',
+        tags: ['TypeScript', 'Publishing'],
+        repoUrl: 'https://github.com/rogerdigital/publio',
+      },
+    ],
   },
   {
-    title: 'Publio',
-    description: 'Multi-platform publishing tool for writing once and distributing everywhere.',
-    tags: ['TypeScript', 'Publishing'],
-    repoUrl: 'https://github.com/rogerdigital/publio',
+    label: 'Obsidian Plugins',
+    projects: [
+      {
+        title: 'Smart Explorer',
+        description: 'Alternative file explorer with custom sorting, grouping, filtering, and lightweight previews.',
+        tags: ['TypeScript', 'Obsidian'],
+        repoUrl: 'https://github.com/rogerdigital/smart-explorer',
+      },
+      {
+        title: 'Vault Inspector',
+        description: 'Vault health checker that identifies broken links, orphan attachments, duplicates, and frontmatter drift.',
+        tags: ['TypeScript', 'Obsidian'],
+        repoUrl: 'https://github.com/rogerdigital/vault-inspector',
+      },
+      {
+        title: 'Document Exporter',
+        description: 'Export notes and folders as Markdown bundles, HTML documents, or print-ready PDFs.',
+        tags: ['TypeScript', 'Obsidian'],
+        repoUrl: 'https://github.com/rogerdigital/document-exporter',
+      },
+    ],
   },
 ];
 ---
@@ -18,17 +46,21 @@ const projects = [
 <section id="projects" class="section">
   <div class="section-header">
     <h2>Projects</h2>
-    <p class="section-note">Selected work across autonomous decision systems and publishing workflows.</p>
+    <p class="section-note">Selected work across autonomous systems, publishing workflows, and developer tools.</p>
   </div>
-  <div>
-    {projects.map((p) => (
-      <div class="flat-item">
-        <h3><a href={p.repoUrl} target="_blank" rel="noreferrer">{p.title}</a></h3>
-        <p>{p.description}</p>
-        <div class="tech-tags">
-          {p.tags.map((tag) => <span>{tag}</span>)}
+
+  {groups.map((group, idx) => (
+    <div style={idx > 0 ? 'margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border);' : ''}>
+      <h3 class="flat-group-title">{group.label}</h3>
+      {group.projects.map((p) => (
+        <div class="flat-item">
+          <h4><a href={p.repoUrl} target="_blank" rel="noreferrer">{p.title}</a></h4>
+          <p>{p.description}</p>
+          <div class="tech-tags">
+            {p.tags.map((tag) => <span>{tag}</span>)}
+          </div>
         </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
+  ))}
 </section>
