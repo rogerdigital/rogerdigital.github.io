@@ -5,8 +5,6 @@ pubDate: 2026-05-10
 tags: ["ai", "open-source", "google"]
 ---
 
-# Google Gemma 4：一次真正意义上的代际跨越
-
 > 写于 2026 年 5 月 | 数据截至 2026 年 4 月
 
 ---

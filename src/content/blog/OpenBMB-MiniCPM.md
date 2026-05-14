@@ -1,12 +1,10 @@
 ---
-title: "MiniCPM 技术调研：端侧 LLM 的效率路线"
+title: "MiniCPM ：端侧 LLM 的效率路线"
 description: "从 MiniCPM4、InfLLM-V2、SALA 到 BitCPM4，梳理 MiniCPM 系列在端侧推理和长上下文效率上的技术取舍。"
 pubDate: 2026-05-14
 tags: ["ai", "llm", "open-source"]
 draft: false
 ---
-
-# MiniCPM 技术调研：端侧 LLM 的效率路线
 
 > 写于 2026 年 5 月 | 数据主要截至 2026 年 2 月
 

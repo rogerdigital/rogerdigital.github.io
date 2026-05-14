@@ -5,8 +5,6 @@ pubDate: 2026-05-10
 tags: ["ai", "paper"]
 ---
 
-# Strategy Gene：让 Agent 真正"学会"而不是"记住"
-
 > 写于 2026 年 5 月 | 基于 arXiv:2604.15097（2026.04.16）
 
 ---
