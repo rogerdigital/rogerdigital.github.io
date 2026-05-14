@@ -5,8 +5,6 @@ pubDate: 2026-05-10
 tags: ["ai", "engineering"]
 ---
 
-# Harness Engineering：AI Agent 时代真正缺的那块拼图
-
 > 写于 2026 年 5 月 | 数据截至 2026 年 4 月
 
 ---
