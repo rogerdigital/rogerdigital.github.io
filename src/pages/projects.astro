@@ -25,24 +25,31 @@ const groups = [
   },
   {
     label: 'Obsidian Plugins',
+    description:
+      'A small product line for Obsidian users, covering vault browsing, maintenance scanning, and document export. All three plugins are listed in the Obsidian Community Plugin marketplace under rogerdigital.',
     projects: [
       {
         title: 'Smart Explorer',
         description: 'Alternative file explorer with custom sorting, grouping, filtering, and lightweight previews.',
         tags: ['TypeScript', 'Obsidian'],
         repoUrl: 'https://github.com/rogerdigital/smart-explorer',
+        marketplaceUrl: 'https://community.obsidian.md/plugins/smart-explorer',
       },
       {
         title: 'Vault Inspector',
-        description: 'Vault health checker that identifies broken links, orphan attachments, duplicates, and frontmatter drift.',
+        description:
+          'Local-first vault maintenance scanner for broken links, orphan attachments, duplicate files, frontmatter inconsistencies, unused tags, and large files.',
         tags: ['TypeScript', 'Obsidian'],
         repoUrl: 'https://github.com/rogerdigital/vault-inspector',
+        marketplaceUrl: 'https://community.obsidian.md/plugins/vault-inspector',
       },
       {
         title: 'Document Exporter',
-        description: 'Export notes and folders as Markdown bundles, HTML documents, or print-ready PDFs.',
+        description:
+          'Document export tool for notes, folders, and selected files, supporting PDF, DOCX, Markdown bundles, and HTML exports.',
         tags: ['TypeScript', 'Obsidian'],
         repoUrl: 'https://github.com/rogerdigital/document-exporter',
+        marketplaceUrl: 'https://community.obsidian.md/plugins/document-exporter',
       },
     ],
   },
@@ -63,10 +70,16 @@ const groups = [
       {groups.map((group, idx) => (
         <div style={idx > 0 ? 'margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--color-border);' : ''}>
           <h3 class="flat-group-title">{group.label}</h3>
+          {group.description && <p class="flat-group-desc">{group.description}</p>}
           {group.projects.map((p) => (
             <div class="flat-item">
               <h4><a href={p.repoUrl} target="_blank" rel="noreferrer">{p.title}</a></h4>
               <p>{p.description}</p>
+              {p.marketplaceUrl && (
+                <p class="flat-group-desc">
+                  <a href={p.marketplaceUrl} target="_blank" rel="noreferrer">Marketplace →</a>
+                </p>
+              )}
               <div class="tech-tags">
                 {p.tags.map((tag) => <span>{tag}</span>)}
               </div>
