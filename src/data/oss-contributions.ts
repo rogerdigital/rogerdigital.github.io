@@ -9,6 +9,24 @@ export interface OSSContribution {
 
 export const contributions: OSSContribution[] = [
   {
+    title: "Skill sync copy fallback data-loss fix",
+    url: "https://github.com/farion1231/cc-switch/pull/2791",
+    description:
+      "Protected existing app skills during sync fallback by validating source directories, copying through a temporary destination before replacement, and covering the empty-source failure path with regression tests.",
+    date: "2026-05-18",
+    project: "cc-switch",
+    projectUrl: "https://github.com/farion1231/cc-switch",
+  },
+  {
+    title: "Sub-cent pricing input precision",
+    url: "https://github.com/farion1231/cc-switch/pull/2793",
+    description:
+      "Reduced model price input steps from 0.01 to 0.0001 so sub-cent token pricing can be entered accurately, extracted the shared step constant, and added UI coverage for all price fields.",
+    date: "2026-05-18",
+    project: "cc-switch",
+    projectUrl: "https://github.com/farion1231/cc-switch",
+  },
+  {
     title: "Telegram non-streaming media deduplication",
     url: "https://github.com/openclaw/openclaw/pull/78420",
     description:
