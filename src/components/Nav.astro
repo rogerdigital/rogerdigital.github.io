@@ -1,21 +1,32 @@
 ---
+interface Props {
+  backLink?: { label: string; href: string };
+}
+
 const isHome = Astro.url.pathname === '/';
+const { backLink } = Astro.props;
 ---
 
 <header class="site-header">
   <nav class="container nav">
     <div class="logo">
-      <a href="/">Roger Deng</a>
+      {backLink ? (
+        <a href={backLink.href}>{backLink.label}</a>
+      ) : (
+        <a href="/">Roger Deng</a>
+      )}
     </div>
-    <div class="nav-links">
-      <a class="nav-link" href="/#hero">Home</a>
-      <a class="nav-link" href="/#projects">Projects</a>
-      <a class="nav-link" href="/#oss">OSS</a>
-      <a class="nav-link" href="/#writing">Writing</a>
-      <a class="nav-link" href={isHome ? '/#now' : '/now'}>Now</a>
-      <a class="nav-link" href={isHome ? '/#uses' : '/uses'}>Uses</a>
-      <a class="nav-link" href="/#contact">Contact</a>
-    </div>
+    {!backLink && (
+      <div class="nav-links">
+        <a class="nav-link" href="/#hero">Home</a>
+        <a class="nav-link" href="/#projects">Projects</a>
+        <a class="nav-link" href="/#oss">OSS</a>
+        <a class="nav-link" href="/#writing">Writing</a>
+        <a class="nav-link" href={isHome ? '/#now' : '/now'}>Now</a>
+        <a class="nav-link" href={isHome ? '/#uses' : '/uses'}>Uses</a>
+        <a class="nav-link" href="/#contact">Contact</a>
+      </div>
+    )}
     <div class="theme-switcher" aria-label="Theme mode">
       <button type="button" class="theme-option" data-theme-choice="light" aria-label="Use light theme" title="Light theme">☼</button>
       <button type="button" class="theme-option" data-theme-choice="dark" aria-label="Use dark theme" title="Dark theme">◐</button>

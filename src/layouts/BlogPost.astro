@@ -17,9 +17,8 @@ const formattedDate = pubDate.toLocaleDateString('en-US', {
 });
 ---
 
-<BaseLayout title={`${title} | Roger Deng`} description={description}>
+<BaseLayout title={`${title} | Roger Deng`} description={description} backLink={{ label: "← Back", href: "/blog" }}>
   <main class="container">
-    <a href="/blog" class="page-back">&larr; Back to blog</a>
     <section class="hero">
       <div class="blog-post-header">
         <h1>{title}</h1>
