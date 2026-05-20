@@ -1,7 +1,11 @@
-# Google I/O 2026 全面回顾：从 AI 助手到 AI Agent，开发者的新纪元
+---
+title: "Google I/O 2026 全面回顾：从 AI 助手到 AI Agent，开发者的新纪元"
+description: "Gemini 3.5 Flash、Omni、Antigravity 2.0、TPU 8、Agent 电商协议——从开发者视角拆解 Google I/O 2026 的技术路线。"
+pubDate: 2026-05-20
+tags: ["ai", "google", "agent", "infrastructure"]
+draft: false
+---
 
-> **发布日期：** 2026 年 5 月 20 日  
-> **作者：** Roger  
 > **活动时间：** 2026 年 5 月 19–20 日，Shoreline Amphitheatre，Mountain View, CA
 
 ---
