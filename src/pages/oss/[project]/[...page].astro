@@ -21,9 +21,8 @@ const { projectName, projectUrl } = Astro.props;
 const { project } = Astro.params;
 ---
 
-<BaseLayout title={`${projectName} Contributions`} description={`Pull requests contributed to ${projectName}.`}>
+<BaseLayout title={`${projectName} Contributions`} description={`Pull requests contributed to ${projectName}.`} backLink={{ label: "← Back", href: "/oss" }}>
   <main class="container">
-    <a href="/oss" class="page-back">&larr; Back</a>
     <section class="section">
       <div class="section-header">
         <h2>{projectName}</h2>
