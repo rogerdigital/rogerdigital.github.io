@@ -5,8 +5,9 @@ import { getByProject, getProjects } from "../../data/oss-contributions";
 const projects = getProjects();
 ---
 
-<BaseLayout title="Open Source Contributions" description="All open-source pull requests I've contributed." backLink={{ label: "← Back", href: "/" }}>
+<BaseLayout title="Open Source Contributions" description="All open-source pull requests I've contributed.">
   <main class="container">
+    <a href="/" class="page-back">&larr; Back</a>
     <section class="section">
       <div class="section-header">
         <h2>Open Source</h2>
