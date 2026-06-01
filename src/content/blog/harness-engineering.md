@@ -124,6 +124,44 @@ Hashimoto 自己的路线和 Stripe、OpenAI 完全相反。他明确说"我不�
 
 ---
 
+## 一个结构化视角：ETCLOVG 七层框架
+
+前面的案例都在讲「谁做了什么」，但缺少一个通用框架来回答「Harness 到底包括什么」。
+
+2026 年 5 月，CMU、Yale、JHU、Amazon 等机构联合发表了综述论文《Agent Harness Engineering: A Survey》，梳理了 170+ 个开源 Agent Harness 项目后，提出了一个七层分类框架——**ETCLOVG**：
+
+| 层 | 职责 | 核心问题 |
+|---|------|---------|
+| **E**xecution | 执行环境 | Agent 在哪里跑？本地、容器、沙箱？边界在哪？ |
+| **T**ooling | 工具接口 | 工具怎么描述、发现、调用？怎么防止误用？ |
+| **C**ontext | 上下文和记忆 | 短期上下文、会话状态、长期记忆怎么管理？ |
+| **L**ifecycle | 生命周期编排 | 单轮还是多轮？一个 Agent 干到底还是分工协作？ |
+| **O**bservability | 可观测性 | 每次调用、重试、token 成本、延迟能不能追踪？ |
+| **V**erification | 验证评估 | 结果对不对？失败是模型的问题还是环境的问题？ |
+| **G**overnance | 治理和安全 | Agent 有什么权限？谁能审批？谁来审计？ |
+
+回过头看前面的案例，会发现每个实践者都在解决这七层中的某几层：
+
+- **Stripe** 的 Blueprint 编排（L）、CI 两轮上限（V）、工具精简（T）
+- **Anthropic** 的三 Agent 分工（L）、Context Reset（C）、评估 Agent（V）
+- **Hashimoto** 的 AGENTS.md（G）、自定义 linter（V）、环境工程（E + T）
+
+大多数团队都是先解决 E/T/C 三层（让 Agent 跑起来），再补 V（验证结果），最后才意识到 O 和 G 不能少。**Observability 和 Governance 经常被当作「附属功能」后补，但论文把它们拎出来作为独立层，理由很充分：Agent 不是聊天机器人，它在行动。一旦开始行动，你必须知道它做了什么（O），也必须控制它被允许做什么（G）。**
+
+这七层还有一个重要特征：**它们不是独立的。** 工具描述会占上下文窗口，影响模型行为（T → C）。执行环境会影响评估结果，因为包版本、重置机制、延迟都不一样（E → V）。可观测性 trace 如果没有记录身份和权限状态，就不能成为治理证据（O → G）。这就是 Harness 的**耦合问题**——改任何一层都不是局部优化，可能改变整个系统行为。
+
+### 评估也要跟着变
+
+这篇综述还提出了一个值得重视的判断：**Agent 评估不能只看最终成功率。**
+
+一个 Agent 的最终结果背后混着很多变量：模型、提示词、工具、上下文、沙箱、重试策略、权限、评估器。同样一个成功率，可能代表完全不同的系统质量——可能靠疯狂重试刷过任务，可能走了危险路径但结果对了，可能利用了测试漏洞。
+
+论文主张**评估要 trace-native**：把完整执行轨迹作为评估对象。记录模型输出、工具调用、环境状态变化、上下文快照、错误、重试、token 使用、延迟和成本。然后判断三件事：结果是否正确，路径是否合理，评估器本身是否可信。
+
+这会把 Agent 评估从「排行榜机制」拉回「质量控制机制」。排行榜回答的是谁分高，质量控制回答的是为什么失败、该改哪一层。
+
+---
+
 ## 一个重要的概念边界
 
 很多人混淆了 Agent 框架和 Harness，值得讲清楚。
@@ -141,6 +179,10 @@ Harness Engineering 发展极快，但目前还有几个核心分歧没有定论
 **Harness 应该多重还是多轻？** 做通用 Agent 产品的追求最小化 Harness 以适应各种场景；做特定产品的可以高度定制。两者并不矛盾，但在通用 Agent 普及的方向下，哪个更对尚无定论。
 
 **单 Agent 还是多 Agent？** 有人用 16 个并行 Agent 构建 C 编译器，Hashimoto 明确拒绝多 Agent，Anthropic 自己承认这是 open question。目前的证据倾向于：任务复杂度和代码库规模是决定因素——小项目单 Agent 够，大项目几乎必然需要多 Agent。
+
+**Harness 的耦合性怎么管理？** 前面提到的 ETCLOVG 七层不是独立的。改工具描述会占上下文窗口，影响模型行为。改执行环境会影响验证结果。改可观测性会改变治理能力。这意味着 Harness 的迭代不能逐层独立优化——一次改动可能在其他层产生意外后果。目前还没有成熟的解耦方法，更多靠工程经验和大量测试。
+
+**好 Harness 不只加控制，还要知道什么时候删控制。** Anthropic 发现了一个有意思的现象：某些 Context Reset 策略对旧模型有用，但对更强的模型已经可以去掉——去掉之后成本下降，质量没有变差。每一个 wrapper、reset、verifier、permission gate 本质上都代表一个假设：「模型自己做不好，所以我在外面加一层控制。」当模型能力变了，这些控制可能不再必要，甚至会拖后腿。所以 Harness Engineering 不是越复杂越好，而是一个需要随模型能力持续评估的动态系统。
 
 **可维护性是更大的悬案。** OpenAI 坦承："AI 代码的长期可维护性"和"棕地项目的改造"是两个"完全空白"的问题。当代码的作者是 Agent 集群，没有人真正理解每一行代码的决策逻辑，维护这些代码的责任怎么落到人身上？这不只是技术问题，也是组织问题。
 
@@ -183,4 +225,4 @@ Harness Engineering 发展极快，但目前还有几个核心分歧没有定论
 
 ---
 
-*参考来源：OpenAI Engineering Blog (2026.02)、Anthropic Engineering Blog (2026.03—04)、Mitchell Hashimoto Blog (2026.02)、Stripe Engineering (2026)、Martin Fowler / Birgitta Böckeler (2026.03)、arXiv 2603.25723*
+*参考来源：OpenAI Engineering Blog (2026.02)、Anthropic Engineering Blog (2026.03—04)、Mitchell Hashimoto Blog (2026.02)、Stripe Engineering (2026)、Martin Fowler / Birgitta Böckeler (2026.03)、arXiv 2603.25723、《Agent Harness Engineering: A Survey》(CMU/Yale/JHU/Amazon, 2026.05)*
