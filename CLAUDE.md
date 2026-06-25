@@ -27,22 +27,26 @@
 ```
 rogerdigital.github.io/
 ├── .github/workflows/
-│   └── deploy.yml          # GitHub Actions: build + deploy
+│   ├── ci.yml              # PR / main Build check
+│   └── deploy.yml          # GitHub Pages deploy on main
 ├── public/
 │   └── favicon.svg
 ├── src/
-│   ├── components/         # Astro 组件（Hero, About, Projects, ...）
+│   ├── components/         # Astro 组件（Hero, Projects, OpenSource, Writing, ...）
 │   ├── content/
 │   │   └── blog/           # Markdown 博客文章
+│   ├── data/               # 非内容数据源（projects.ts 项目分组数据）
 │   ├── layouts/
 │   │   ├── BaseLayout.astro
 │   │   └── BlogPost.astro
 │   ├── pages/
 │   │   ├── index.astro     # 主页
+│   │   ├── projects.astro  # 项目 + OSS 贡献
 │   │   ├── now.astro
 │   │   ├── uses.astro
-│   │   ├── oss/2026-04-29.astro
-│   │   └── blog/           # 博客列表 + 动态路由
+│   │   ├── oss/            # OSS 列表（index）+ 按项目分页（[project]/[...page]）
+│   │   ├── contributions/  # 旧 OSS 详情页（保留已有链接）
+│   │   └── blog/           # 博客分页列表（[...page]）+ 文章（[...slug]）
 │   ├── styles/
 │   │   └── global.css
 │   └── content.config.ts   # Content Collections schema
@@ -51,27 +55,28 @@ rogerdigital.github.io/
 └── package.json
 ```
 
-Astro 静态输出，构建产物为纯 HTML + CSS，客户端零 JS。
+Astro 静态输出，构建产物为纯 HTML + CSS。无客户端框架和 hydration，仅少量内联脚本（主题切换、导航交互等）。
 
 ## Page Sections
 
 ### 主页
-1. **Nav** — 顶部导航：Logo + Home / About / Projects / OSS / Writing / Now / Uses / Contact
-2. **Hero** — 标语 + 简介 + 能力标签
-3. **About** — Bio 展开 + 关键链接
-4. **Projects** — 精选项目卡片 + 技术栈标签
-5. **Open Source** — 贡献日志 + OpenClaw PR 详情
-6. **Writing** — 最新博客文章列表
-7. **Now** — 当前状态
-8. **Uses** — 开发工具和设备
-9. **Contact** — 联系方式 + Resume 下载
-10. **Footer** — 版权 + Colophon
+1. **Nav** — 顶部导航：Logo + Home / Projects / OSS / Writing / Now / Uses / Contact
+2. **Hero** — 标语 + 内联 Bio + 能力标签
+3. **Projects** — 项目分组（Products / Obsidian Plugins）+ 技术栈标签
+4. **Open Source** — 贡献日志 + OpenClaw PR 详情
+5. **Writing** — 最新博客文章列表
+6. **Now** — 当前状态
+7. **Uses** — 开发工具和设备
+8. **Contact** — 联系方式
+9. **Footer** — 版权 + Colophon
 
 ### 独立页面
+- `/projects` — 项目 + OSS 贡献详情
 - `/now` — Now 页面
 - `/uses` — Uses 页面
-- `/oss/2026-04-29` — OSS 贡献日志
-- `/blog` — 博客列表
+- `/oss` — OSS 贡献日志列表；`/oss/[project]` 按项目分页
+- `/contributions/oss-2026-04-29` — 旧 OSS 详情页，保留已有链接
+- `/blog` — 博客分页列表
 - `/blog/[slug]` — 博客文章
 
 ## Code Conventions
@@ -79,7 +84,7 @@ Astro 静态输出，构建产物为纯 HTML + CSS，客户端零 JS。
 ### Astro / TypeScript
 - 2 空格缩进
 - 组件 props 使用 TypeScript interface
-- 页面数据优先定义在组件内（如 Projects 数据数组）
+- 跨页面复用的结构化数据抽到 `src/data/`（如 `projects.ts` 的项目分组数据），页面/组件 import 引用
 - 博客文章用 Markdown + frontmatter
 
 ### CSS
@@ -124,7 +129,7 @@ draft: false
 
 ## Important Guardrails
 
-- 构建产物为纯 HTML + CSS，不向客户端发送 JavaScript
+- 构建产物为纯 HTML + CSS，不引入客户端框架，仅在必要时使用少量内联脚本
 - 所有外部链接使用 `target="_blank" rel="noreferrer"`
 - 保持响应式设计，确保移动端体验
 - 博客文章通过 Content Collections 管理，frontmatter 必须符合 `content.config.ts` schema
