@@ -17,13 +17,13 @@ Built with [Astro](https://astro.build) and deployed to GitHub Pages.
 
 ## Sections And Routes
 
-- `/` — Home page with Hero, About, Projects, Open Source, Writing, Now, Uses, and Contact sections.
+- `/` — Home page with Hero, Projects, Open Source, Writing, Now, Uses, and Contact sections.
 - `/projects` — Selected projects and open-source contribution details.
 - `/now` — Current focus and activities.
 - `/uses` — Development tools and setup.
 - `/blog` — Public blog post list.
 - `/blog/[slug]` — Blog post detail pages.
-- `/oss/2026-04-29` — OSS contribution log.
+- `/oss` — OSS contribution log list; `/oss/[project]` for per-project pagination.
 - `/contributions/oss-2026-04-29` — Earlier contribution detail page retained for existing links.
 
 ## Project Structure
@@ -38,6 +38,7 @@ rogerdigital.github.io/
 ├── src/
 │   ├── components/         # Reusable Astro components
 │   ├── content/blog/       # Markdown blog posts
+│   ├── data/               # Shared structured data (e.g. projects.ts)
 │   ├── layouts/            # BaseLayout and BlogPost layouts
 │   ├── pages/              # Astro file-based routes
 │   ├── styles/global.css
