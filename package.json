@@ -19,6 +19,6 @@
   },
   "homepage": "https://rogerdigital.github.io",
   "dependencies": {
-    "astro": "^6.2.1"
+    "astro": "^7.2.3"
   }
 }
