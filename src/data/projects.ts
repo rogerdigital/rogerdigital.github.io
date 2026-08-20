@@ -43,6 +43,13 @@ export const projectGroups: ProjectGroup[] = [
         tags: ['AI Agent', 'Skills'],
         repoUrl: 'https://github.com/rogerdigital/roger-skills',
       },
+      {
+        title: 'dsh-searxng',
+        description:
+          'SearXNG-backed search provider plugin for DeepSeek Harness — free, self-hosted, key-less web search for agents through the ctx.web capability seam.',
+        tags: ['TypeScript', 'Agent', 'Search'],
+        repoUrl: 'https://github.com/rogerdigital/dsh-searxng',
+      },
     ],
   },
   {
