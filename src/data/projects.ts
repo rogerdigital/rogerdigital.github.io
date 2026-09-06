@@ -50,6 +50,13 @@ export const projectGroups: ProjectGroup[] = [
         tags: ['TypeScript', 'Agent', 'Search'],
         repoUrl: 'https://github.com/rogerdigital/dsh-searxng',
       },
+      {
+        title: 'dsh-vet',
+        description:
+          'Security vetting scanner for DeepSeek Harness (DSH) plugins — permission and supply-chain audits before install, with a machine-readable report standard, A–F grades, and a GitHub Action for continuous self-auditing.',
+        tags: ['TypeScript', 'Agent', 'Security'],
+        repoUrl: 'https://github.com/rogerdigital/dsh-vet',
+      },
     ],
   },
   {
