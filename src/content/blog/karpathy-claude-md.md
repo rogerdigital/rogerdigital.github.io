@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "管 AI 像管实习生：从 Karpathy 的 CLAUDE.md 看规则文件该怎么写"
 description: "社区流传着一份号称 Karpathy 自用的 CLAUDE.md。但真正值得学的不是它写了什么，而是它为什么这么写——以及怎么写一份属于自己的。"
 pubDate: 2026-07-03
