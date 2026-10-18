@@ -40,18 +40,19 @@ const { backLink } = Astro.props;
     const root = document.documentElement;
     const media = window.matchMedia('(prefers-color-scheme: light)');
     const options = document.querySelectorAll<HTMLButtonElement>('.theme-option');
-    const validChoices = ['light', 'dark', 'system'];
 
-    const readChoice = () => {
+    type ThemeChoice = 'light' | 'dark' | 'system';
+
+    const readChoice = (): ThemeChoice => {
       const stored = localStorage.getItem(storageKey);
-      return validChoices.includes(stored || '') ? stored : 'system';
+      return stored === 'light' || stored === 'dark' ? stored : 'system';
     };
 
-    const resolveTheme = (choice: string) => (
+    const resolveTheme = (choice: ThemeChoice) => (
       choice === 'system' ? (media.matches ? 'light' : 'dark') : choice
     );
 
-    const applyTheme = (choice: string) => {
+    const applyTheme = (choice: ThemeChoice) => {
       const resolved = resolveTheme(choice);
       root.dataset.themeChoice = choice;
       root.dataset.theme = resolved;
@@ -66,7 +67,7 @@ const { backLink } = Astro.props;
 
     options.forEach((option) => {
       option.addEventListener('click', () => {
-        const choice = option.dataset.themeChoice || 'system';
+        const choice = (option.dataset.themeChoice || 'system') as ThemeChoice;
         if (choice === 'system') {
           localStorage.removeItem(storageKey);
         } else {

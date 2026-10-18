@@ -92,11 +92,12 @@ Astro 静态输出，构建产物为纯 HTML/CSS/JS。
 ```bash
 npm install
 npm run dev
+npm run check
 npm run build
 npm run preview
 ```
 
-`npm run build` 是主要验证命令。
+`npm run build` 是主要验证命令，`npm run check`（astro check）做类型检查，CI 中两者都会执行。
 
 `main` 分支受保护：改动必须通过 PR 提交，且需等 `Build` 检查通过后才能合并，合并后 GitHub Actions 自动部署。
 
