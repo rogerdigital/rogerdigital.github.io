@@ -2,6 +2,7 @@
 import type { GetStaticPaths } from "astro";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { formatDate } from '../../utils/date';
 
 export const getStaticPaths = (async ({ paginate }) => {
   const allPosts = await getCollection('blog');
@@ -31,20 +32,13 @@ const { page } = Astro.props;
           <p>No posts yet. Check back soon.</p>
         </div>
       )}
-      {page.data.map((post) => {
-        const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        });
-        return (
-          <div class="writing-item">
-            <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
-            <p>{post.data.description}</p>
-            <p class="writing-meta">{formattedDate}</p>
-          </div>
-        );
-      })}
+      {page.data.map((post) => (
+        <div class="writing-item">
+          <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+          <p class="writing-meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time></p>
+        </div>
+      ))}
 
       {page.lastPage > 1 && (
         <nav class="pagination">
