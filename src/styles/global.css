@@ -17,9 +17,9 @@
   --color-header-bg: rgba(12, 15, 17, 0.85);
   --color-ambient: rgba(128, 159, 255, 0.05);
 
-  --font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  --font-body: "Plus Jakarta Sans Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-serif: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
+  --font-mono: "JetBrains Mono Variable", "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
 }
 
 html[data-theme='light'] {

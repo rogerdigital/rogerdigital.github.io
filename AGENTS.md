@@ -77,7 +77,7 @@ Astro 静态输出，构建产物为纯 HTML/CSS/JS。
 ### CSS
 - 2 空格缩进
 - BEM-lite 类命名风格
-- 字体：Google Fonts（Plus Jakarta Sans / Source Serif 4 / JetBrains Mono），回退系统栈 `-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`
+- 字体：Fontsource 可变字体自托管（Plus Jakarta Sans / Source Serif 4 / JetBrains Mono，BaseLayout 引入），回退系统栈 `-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`；不使用 Google Fonts 等第三方字体请求
 - 主题：`html[data-theme]` + `data-theme-choice`（light/dark/system），localStorage 持久化，`<head>` 内联脚本防闪烁
 - 响应式设计：主断点 `@media (max-width: 800px)`，小屏补充 `@media (max-width: 520px)`
 - 布局：Flexbox + CSS Grid
