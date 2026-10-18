@@ -6,7 +6,6 @@ node_modules/
 
 # Build output
 dist/
-.astro/
 *.tsbuildinfo
 
 # Runtime
@@ -40,6 +39,3 @@ npm-debug.log*
 
 # Testing
 coverage/
-
-# OS
-.DS_Store

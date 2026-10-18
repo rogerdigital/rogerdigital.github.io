@@ -3,7 +3,6 @@ interface Props {
   backLink?: { label: string; href: string };
 }
 
-const isHome = Astro.url.pathname === '/';
 const { backLink } = Astro.props;
 ---
 
@@ -22,8 +21,8 @@ const { backLink } = Astro.props;
         <a class="nav-link" href="/#projects">Projects</a>
         <a class="nav-link" href="/#oss">OSS</a>
         <a class="nav-link" href="/#writing">Writing</a>
-        <a class="nav-link" href={isHome ? '/#now' : '/now'}>Now</a>
-        <a class="nav-link" href={isHome ? '/#uses' : '/uses'}>Uses</a>
+        <a class="nav-link" href="/#now">Now</a>
+        <a class="nav-link" href="/#uses">Uses</a>
         <a class="nav-link" href="/#contact">Contact</a>
       </div>
     )}
@@ -119,17 +118,4 @@ const { backLink } = Astro.props;
       if (atBottom) setActive(lastId);
     }, { passive: true });
   }
-
-  // Highlight page links on non-home pages
-  const path = window.location.pathname;
-  links.forEach((link) => {
-    const href = link.getAttribute('href');
-    if (!href) return;
-    if (path === '/now' && href === '/now') link.classList.add('active');
-    if (path === '/uses' && href === '/uses') link.classList.add('active');
-    if (path.startsWith('/blog') && href === '/#writing') link.classList.add('active');
-    if (path.startsWith('/projects') && href === '/#projects') link.classList.add('active');
-    if (path.startsWith('/oss') && href === '/#oss') link.classList.add('active');
-    if (path.startsWith('/contributions') && href === '/#projects') link.classList.add('active');
-  });
 </script>
