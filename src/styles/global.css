@@ -140,6 +140,10 @@ h1 .accent {
 .container > *:nth-child(8) { animation-delay: 0.56s; }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .container > * {
     animation: none;
   }
