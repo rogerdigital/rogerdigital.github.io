@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "Strategy Gene：让 Agent 真正学会而不是记住"
 description: "基于 arXiv:2604.15097，探讨如何通过 Strategy Gene 让 Agent 系统真正习得策略，而非依赖文档堆叠的硬编码记忆。"
 pubDate: 2026-05-10

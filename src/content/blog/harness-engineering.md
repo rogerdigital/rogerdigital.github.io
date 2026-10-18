@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "Harness Engineering：AI Agent 时代真正缺的那块拼图"
 description: "Harness Engineering 不是新模型也不是新框架，而是一种工程思路的命名——让无数工程师感到如释重负的命名。"
 pubDate: 2026-05-10

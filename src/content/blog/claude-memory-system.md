@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: 从滚动便签到文件系统：Claude 记忆架构重构意味着什么
 description: Anthropic 正为 Claude 测试双模记忆系统——Memory Files 结构化存储、Dreams 异步整合，以及永不下线的 Conway Agent。本文从技术架构与产品逻辑两个维度，拆解这次迄今最彻底的记忆系统重构。
 pubDate: 2026-06-02

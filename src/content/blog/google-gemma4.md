@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "Google Gemma 4：一次真正意义上的代际跨越"
 description: "Gemma 4 四种尺寸全系列原生多模态，Apache 2.0 开源，Agent 能力 +1200%——不只是性能提升，是结构性跨越。"
 pubDate: 2026-05-10

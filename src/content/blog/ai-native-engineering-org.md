@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "瓶颈转移之后：Claude Code 团队如何重建工程组织"
 description: "Anthropic Claude Code 工程总监 Fiona Fung 分享了 AI 原生团队的五个组织变革。当写代码不再是瓶颈，围绕它的一切流程都得重新设计。"
 pubDate: 2026-06-05

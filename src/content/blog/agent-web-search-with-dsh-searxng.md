@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "让 Agent 拥有自己的搜索能力：用 DSH 与 SearXNG 构建可自托管 Web Search"
 description: "当 Agent 需要实时信息时，如何避免绑定单一商业搜索 API？本文以 dsh-searxng 为例，拆解可替换的搜索 Provider、自托管部署、错误边界与验证方法。"
 pubDate: 2026-08-18

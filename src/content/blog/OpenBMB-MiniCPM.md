@@ -1,4 +1,5 @@
 ---
+lang: zh
 title: "MiniCPM ：端侧 LLM 的效率路线"
 description: "从 MiniCPM4、InfLLM-V2、SALA 到 BitCPM4，梳理 MiniCPM 系列在端侧推理和长上下文效率上的技术取舍。"
 pubDate: 2026-05-14
