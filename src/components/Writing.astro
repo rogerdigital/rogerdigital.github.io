@@ -1,5 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
+import { formatDate } from '../utils/date';
 
 const allPosts = await getCollection('blog');
 const posts = allPosts
@@ -19,20 +20,13 @@ const posts = allPosts
     </div>
   ) : (
     <div>
-      {posts.map((post) => {
-        const formattedDate = post.data.pubDate.toLocaleDateString('en-US', {
-          year: 'numeric',
-          month: 'short',
-          day: 'numeric',
-        });
-        return (
-          <div class="writing-item">
-            <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
-            <p>{post.data.description}</p>
-            <p class="writing-meta">{formattedDate}</p>
-          </div>
-        );
-      })}
+      {posts.map((post) => (
+        <div class="writing-item">
+          <h3><a href={`/blog/${post.id}`}>{post.data.title}</a></h3>
+          <p>{post.data.description}</p>
+          <p class="writing-meta"><time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time></p>
+        </div>
+      ))}
       <div style="margin-top:12px;">
         <a href="/blog" class="accent-link">All posts →</a>
       </div>
