@@ -8,14 +8,15 @@ interface Props {
   pubDate: Date;
   tags?: string[];
   lang?: string;
+  ogType?: 'website' | 'article';
 }
 
-const { title, description, pubDate, tags = [], lang = 'en' } = Astro.props;
+const { title, description, pubDate, tags = [], lang = 'en', ogType = 'article' } = Astro.props;
 
 const formattedDate = formatDate(pubDate, 'long');
 ---
 
-<BaseLayout title={`${title} | Roger Deng`} description={description} lang={lang} backLink={{ label: "← Back", href: "/blog" }}>
+<BaseLayout title={`${title} | Roger Deng`} description={description} lang={lang} ogType={ogType} backLink={{ label: "← Back", href: "/blog" }}>
   <main class="container">
     <section class="hero">
       <div class="blog-post-header">
