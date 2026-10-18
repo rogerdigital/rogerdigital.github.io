@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200">
+  <defs>
+    <radialGradient id="ambient" cx="50%" cy="10%" r="80%">
+      <stop offset="0%" stop-color="#809FFF" stop-opacity="0.18"/>
+      <stop offset="70%" stop-color="#809FFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1200" fill="#0C0F11"/>
+  <rect width="1200" height="1200" fill="url(#ambient)"/>
+  <g transform="translate(0,285)">
+    <rect x="96" y="150" width="64" height="4" fill="#809FFF"/>
+    <text x="96" y="288" font-family="Georgia, 'Times New Roman', serif" font-size="92" fill="#e2e5ea" letter-spacing="-2">Roger Deng</text>
+    <text x="96" y="368" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#809FFF">Building AI-native products,</text>
+    <text x="96" y="420" font-family="Georgia, 'Times New Roman', serif" font-size="36" fill="#809FFF">autonomous agents, and developer tools.</text>
+    <text x="96" y="528" font-family="Menlo, monospace" font-size="24" fill="#8e95a0" letter-spacing="5">ROGERDIGITAL.GITHUB.IO</text>
+  </g>
+</svg>
