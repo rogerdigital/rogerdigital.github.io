@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rogerdigital.github.io/sitemap-index.xml
