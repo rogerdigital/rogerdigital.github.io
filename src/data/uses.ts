@@ -25,7 +25,6 @@ export const usesCategories: UsesCategory[] = [
       { name: 'Swift', icon: 'swift', color: 'F05138' },
       { name: 'SwiftUI', icon: 'swift', color: 'F05138' },
       { name: 'Python', icon: 'python', color: '3776AB' },
-      { name: 'Go', icon: 'go', color: '00ADD8' },
     ],
   },
   {
