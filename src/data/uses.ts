@@ -21,9 +21,7 @@ export const usesCategories: UsesCategory[] = [
     items: [
       { name: 'TypeScript', icon: 'typescript', color: '3178C6' },
       { name: 'Node.js', icon: 'nodedotjs', color: '5FA04E' },
-      { name: 'React', icon: 'react', color: '61DAFB' },
       { name: 'Swift', icon: 'swift', color: 'F05138' },
-      { name: 'SwiftUI', icon: 'swift', color: 'F05138' },
       { name: 'Python', icon: 'python', color: '3776AB' },
     ],
   },
